@@ -1,0 +1,85 @@
+/* jquery ui required */
+.ui-sortable-handle{
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+.mapboxgl-ctrl.legend-container {
+    display: none;
+    width: auto;
+    height: auto;
+    pointer-events: auto;
+    margin: 0;
+    float: none;
+}
+
+#mapboxgl-legend {
+    padding: 5px;
+}
+
+.layer-directory .directory-name {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+}
+
+.layer-directory .layer-item {
+    font-size: 15px;
+    font-weight: 400;
+    padding: 2px 6px 2px 15px;
+}
+
+.layer-item input {
+    margin-right: 5px;
+}
+
+.layer-item.ghost {
+    color: #D3D3D3;
+}
+
+.layer-item span.name {
+    margin-left: 5px;
+}
+
+/* .grb is class for all sortable components */
+.grb {
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.grb:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/* font awesome classes */
+.geojson-polygon:before {
+    content: "\f0c8";
+}
+
+.geojson-circle:before {
+    content: "\f111";
+}
+
+.geojson-line-solid:before {
+    content: "\f068";
+}
+
+.geojson-line-dashed:before {
+    content: "\f141";
+}
+
+.toggle-directory-open, .toggle-directory-close {
+    float: left;
+    margin-right: 5px;
+}
+.toggle-directory-open:before{
+    content: "\f07c";
+}
+
+.toggle-directory-close:before {
+    content: "\f07b";
+}

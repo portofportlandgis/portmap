@@ -1,0 +1,38 @@
+
+#floor_1, #floor_2, #floor_3 {
+    display: none;
+}
+
+#room_1, #room_2, #room_3, #room_1_labels, #room_2_labels, #room_3_labels, #airline_gate {
+    display: none;
+}
+
+#inside_feature_poly_1, #inside_feature_poly_2, #inside_feature_poly_3 {
+    display: none;
+}
+
+#elevator_1, #elevator_2, #elevator_3 {
+    display: none;
+}
+
+#door_poly_1, #door_poly_2, #door_poly_3 {
+    display: none;
+}
+
+#pavement_sections_labels, #pavement_sections  {
+    display: none;
+}
+
+#pdx_far77_label, #pdx_far77, #ttd_far77_label, #ttd_far77, #hio_far77_label, #hio_far77   {
+    display: none;
+}
+
+#building_poly_labels, #building_poly  {
+    display: none;
+}
+
+#lease_ground_labels, #lease_ground  {
+    display: none;
+}
+
+

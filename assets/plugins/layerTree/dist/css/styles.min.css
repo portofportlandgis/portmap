@@ -1,0 +1,99 @@
+.ui-sortable-handle {
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+.mapboxgl-ctrl.legend-container {
+    display: none;
+    width: auto;
+    height: auto;
+    pointer-events: auto;
+    margin: 0;
+    float: none;
+}
+
+#mapboxgl-legend {
+    padding: 5px;
+}
+
+.layer-directory .directory-name {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px;
+}
+
+.layer-directory .layer-item {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px 2px 15px;
+}
+
+.layer-item input {
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.layer-item.ghost {
+    color: #d3d3d3;
+}
+
+.layer-item span.name {
+    margin-left: 5px;
+}
+
+.child-layer > img, .layer-item > img {
+    height: 15px;
+    width: 15px;
+}
+
+.child-layer {
+    padding-left: 30px;
+    font-size: 11px;
+}
+
+    .child-layer span.child-name {
+        padding-left: 5px;
+    }
+
+.grb {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+    .grb:active {
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+    }
+
+.geojson-polygon:before {
+    content: "\f0c8";
+}
+
+.geojson-circle:before {
+    content: "\f111";
+}
+
+.geojson-line-solid:before {
+    content: "\f068";
+}
+
+.geojson-line-dashed:before {
+    content: "\f141";
+}
+
+.toggle-directory-close, .toggle-directory-open {
+    float: left;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+    .toggle-directory-open:before {
+        content: "\f07c";
+    }
+
+    .toggle-directory-close:before {
+        content: "\f07b";
+    }
