@@ -1,5 +1,4 @@
-//mapboxgl.accessToken = '<your access token here>';
-mapboxgl.accessToken = 'pk.eyJ1IjoicG9ydGdpcyIsImEiOiJrbEEzV3JVIn0.O9iz-MI7OHXqyBXkS1pfog';
+mapboxgl.accessToken = '<your access token here>';
 var map = new mapboxgl.Map({
     container: 'map', 
     style: 'mapbox://styles/mapbox/light-v9',
