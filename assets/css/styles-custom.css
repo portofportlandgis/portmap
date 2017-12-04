@@ -1,0 +1,181 @@
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+
+#info {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 42px;
+    padding: 12px;
+    border: 1px solid rgb(208, 208, 208);
+    border-radius: 0px;
+    font-size: 11px;
+    text-align: left;
+    color: #656565;
+    background: #e8e8e8;
+}
+
+#calculate {
+
+    background-color: none;
+    color: #4a4a4a;
+    cursor: pointer;
+
+}
+
+#calculated-area, #calculated-length {
+    height: 40px;
+    width: 100%;
+    background-color: #e8e8e8;
+    border: 1px solid rgb(208, 208, 208);
+    color: #4a4a4a;
+    /*border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;*/
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+
+.no-js #loader {
+    display: none;
+}
+
+.js #loader {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 0;
+}
+
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(61, 68, 72, 1.0);
+}
+
+
+#saveButton {
+    max-height: 40px;
+    width: 40px;
+    background-color: #c5c5c5;
+    color: #4a4a4a;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+#urlCopied {
+    max-height: 40px;
+    height: 40px;
+    background-color: #e8e8e8;
+    color: #4a4a4a;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 13px 13px 13px 5px;
+    margin: 10px 0;
+    font-size: smaller;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#copyButton {
+    min-height: 40px;
+    width: 40px;
+    background-color: #dcdcdc;
+    border: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+#export-map {
+    min-height: 40px;
+    border: 1px solid rgb(208, 208, 208);
+    padding: 10px;
+    cursor: pointer;
+}
+
+#search_general {
+    min-height: 40px;
+    width: 50px;
+    background-color: #c5c5c5;
+    border: none;
+    cursor: pointer;
+}
+
+#clear_general {
+    min-height: 40px;
+    width: 50px;
+    color: #fbfbfb;
+    background-color: #a2a2a2;
+    border: none;
+    cursor: pointer;
+}
+
+
+.ui-autocomplete {
+    max-height: 300px;
+    width: 244px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 5px;
+    padding-top: 5px;
+    border: 2px solid #e8e8e8;
+    z-index: 2000;
+    font-size: small;
+    color: #636363;
+    white-space: nowrap;
+}
+
+    .ui-autocomplete .ui-menu-item a.ui-state-focus {
+        background: #c2f0ff !important;
+        padding-right: 100%;
+        border: none;
+        color: #353535;
+        text-decoration: none;
+        font-weight: 600;
+        white-space: nowrap;
+        font-size: small;
+    }
+
+a {
+    color: #1182e2;
+    text-decoration: none;
+    /* display: block; */
+}
+
+    a:focus, a:hover {
+        color: black;
+        text-decoration: underline;
+    }
+
+.clickable {
+    cursor: pointer;
+}
+
+.layer-picker {
+    padding: 8px 8px;
+    width: 100%;
+    background: #e8e8e8;
+    border: none;
+    border-right: none;
+    font-size: 9pt;
+    border-radius: 0;
+    -webkit-appearance: none;
+}

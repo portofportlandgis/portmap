@@ -1,0 +1,109 @@
+﻿/* 'input' styling */
+.label-marker {
+    display: block;
+    position: relative;
+    min-height: 20px;
+    /* modify with regards to text limit */
+    max-width: 180px;
+    padding: 5px;
+    border-radius: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    background-color: transparent;
+    -webkit-appearance: textarea;
+    -moz-appearance: textarea;
+    appearance: textarea;
+}
+    /* container class added when editable */
+    .label-marker.label-container {
+        min-height: 40px;
+        display: flex;
+        display: -webkit-flex;
+        -webkit-align-items: center;
+        align-items: center;
+        text-decoration: none !important;
+    }
+
+        .label-marker.active,
+        .label-marker:focus,
+        .label-marker.label-container.active {
+            background-color: rgba(255,255,255,0.90);
+        }
+        /* hide chromes blue outline on inputs */
+        .label-marker.active,
+        .label-marker:focus,
+        .label-marker.label-container.active,
+        .label-marker.label-container .marker-text-child:active,
+        .label-marker.label-container .marker-text-child:focus {
+            outline: none !important;
+        }
+/* editable input */
+span.marker-text-child {
+    margin: auto;
+}
+/* icon for dragging labels */
+.drag-icon {
+    padding: 8px;
+    float: left !important;
+    cursor: move;
+}
+
+#textTool, #editTextTool {
+    /* right: 10px; */
+    /* height: 25px; */
+    /* width: 120px; */
+    /* padding: 5px; */
+    padding: 5px 10px 5px 5px;
+}
+
+#textTool {
+    top: 60px;
+}
+
+#editTextTool {
+    top: 105px;
+}
+
+    #textTool[active='true'],
+    #editTextTool[active='true'] {
+    background-color: #4a4a4a;
+    color: #e8e8e8;
+    border: 1px solid rgb(74, 74, 74);
+    }
+
+#textTool, #editTextTool, #customTextPalette {
+    background: #e8e8e8;
+    /* position: absolute; */
+    z-index: 1;
+    /* border-radius: 3px; */
+    border: 1px solid rgb(208, 208, 208);
+    /*font-family: 'Open Sans', sans-serif;*/
+    margin-right: 10px;
+}
+
+#customTextPalette {
+    top: 165px;
+    right: 10px;
+    padding: 5px;
+}
+
+.font-size-change, .font-color-change {
+    display: inline-block;
+}
+
+    .font-size-change:hover, .font-color-change:hover {
+        cursor: pointer !important;
+    }
+
+.font-size-change {
+    padding: 0px 8px 0px 0px;
+}
+
+.font-color-change {
+    height: 18px;
+    width: 18px;
+    border-radius: 0px;
+    margin: 0 0 0 2px;
+}
