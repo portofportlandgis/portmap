@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='node_modules/mapbox-gl/dist/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
+    <link href='node_modules/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
+    <link href='node_modules/MapboxGL-Layer-Tree/dist/css/styles.min.css' rel='stylesheet' />
+    <link href='dist/css/styles.min.css' rel='stylesheet' />
+    <link href='css/app.css' rel='stylesheet' />
+</head>
+<body>
+  <div id='map'></div>
+  <button id='mapboxgl-ctrl-print' data-toggle='modal' data-target='#map-print-modal' style='width:50px; height:50px;position:absolute'></button>
+
+  <!-- print modal-->
+  <div class="modal fade" id="map-print-modal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Print Modal</h4>
+        </div>
+        <div class="modal-body">
+          <!-- print form -->
+          <form class="form-horizontal container-fluid" id="print-form">
+            <div class="row">
+
+              <!-- output format -->
+              <div class="radio-groups format form-group col-sm-6">
+                <label class="control-label" for="output-format">Output Format</label>
+                <div>
+                  <label class="radio-inline" for="output-format-0">
+                    <input type="radio" name="output-format" id="output-format-0" value="png" checked="checked">
+                    PNG
+                  </label>
+                  <label class="radio-inline" for="output-format-1">
+                    <input type="radio" name="output-format" id="output-format-1" value="pdf">
+                    PDF
+                  </label>
+                </div>
+              </div>
+
+              <!-- dimensions -->
+              <div class="radio-groups size form-group col-sm-6">
+                <label class="control-label" for="dimensions">Dimensions</label>
+                <div>
+                  <label class="radio-inline" for="dimensions-0">
+                    <input type="radio" name="dimensions" id="dimensions-0" value="default" checked="checked">
+                    8.5 x 11
+                  </label>
+                  <label class="radio-inline" for="dimensions-1">
+                    <input type="radio" name="dimensions" id="dimensions-1" value="large">
+                    11 x 17
+                  </label>
+                </div>
+              </div>
+
+              <!-- title -->
+              <div class="col">
+                <div class="form-group col-sm-12">
+                  <label class="col-md control-label" for="export-title">Title</label>
+                  <input id="export-title" name="export-title" type="text" placeholder="My Title" class="form-control input-md">
+                </div>
+              </div>
+            </div>
+          </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" id="export-map" class="btn btn-primary">Export</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src='node_modules/mapbox-gl/dist/mapbox-gl.js'></script>
+<script src='node_modules/MapboxGL-Layer-Tree/dist/js/scripts.min.js'></script>
+<script src='node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js'></script>
+<script src='node_modules/jspdf/dist/jspdf.min.js'></script>
+<script src='node_modules/pdfjs-dist/build/pdf.combined.js'></script>
+<script src='node_modules/filesaver.js/FileSaver.min.js'></script>
+<script src='node_modules/html2canvas/dist/html2canvas.min.js'></script>
+<script src='node_modules/cropper/dist/cropper.min.js'></script>
+<script src='js/print.js'></script>
+<!-- <script src='dist/js/scripts.min.js'></script> -->
+<script src='js/app.js'></script>
+
+</body>
+</html>

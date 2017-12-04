@@ -1,0 +1,26 @@
+body {
+    margin:0; padding:0;
+}
+
+#map {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+}
+
+#mapboxgl-ctrl-print {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB3aWR0aD0iMTc5MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNDQ4IDE1MzZoODk2di0yNTZoLTg5NnYyNTZ6bTAtNjQwaDg5NnYtMzg0aC0xNjBxLTQwIDAtNjgtMjh0LTI4LTY4di0xNjBoLTY0MHY2NDB6bTExNTIgNjRxMC0yNi0xOS00NXQtNDUtMTktNDUgMTktMTkgNDUgMTkgNDUgNDUgMTkgNDUtMTkgMTktNDV6bTEyOCAwdjQxNnEwIDEzLTkuNSAyMi41dC0yMi41IDkuNWgtMjI0djE2MHEwIDQwLTI4IDY4dC02OCAyOGgtOTYwcS00MCAwLTY4LTI4dC0yOC02OHYtMTYwaC0yMjRxLTEzIDAtMjIuNS05LjV0LTkuNS0yMi41di00MTZxMC03OSA1Ni41LTEzNS41dDEzNS41LTU2LjVoNjR2LTU0NHEwLTQwIDI4LTY4dDY4LTI4aDY3MnE0MCAwIDg4IDIwdDc2IDQ4bDE1MiAxNTJxMjggMjggNDggNzZ0MjAgODh2MjU2aDY0cTc5IDAgMTM1LjUgNTYuNXQ1Ni41IDEzNS41eiIvPjwvc3ZnPg==);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
+
+.radio-groups {
+    text-align: center;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+}

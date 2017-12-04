@@ -1,0 +1,27 @@
+{
+  "name": "Mapbox-GL-JS-Print",
+  "version": "1.0.0",
+  "description": "Allow users to print Mapbox GL layers",
+  "repository": "https://github.com/TheGartrellGroup/Mapbox-GL-JS-Print.git",
+  "author": "The Gartrell Group",
+  "license": "MIT",
+  "dependencies": {
+    "MapboxGL-Layer-Tree": "https://github.com/TheGartrellGroup/Mapbox-GL-JS-Layer-Tree.git",
+    "blueimp-canvas-to-blob": "^3.7.0",
+    "bootstrap": "^3.3.7",
+    "cropper": "^3.0.0-beta",
+    "file-saver": "1.3.3",
+    "font-awesome": "^4.7.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.0.1",
+    "gulp-webserver": "^0.9.1",
+    "html2canvas": "^0.5.0-beta4",
+    "jquery": "2.2.4",
+    "jspdf": "^1.3.3",
+    "mapbox-gl": "^0.32.1",
+    "pdfjs-dist": "^1.7.414"
+  },
+  "main": "map.js"
+}
