@@ -1,0 +1,35 @@
+{
+  "Layers": [
+    {
+      "source": "ne_50m_populated_places_simple",
+      "display_name": "Populated Place",
+      "name": "populated",
+      "catagory": "Cultural",
+      "type": "point"
+    },
+
+    {
+      "source": "ne_110m_admin_0_map_units",
+      "display_name": "Country",
+      "name": "country",
+      "catagory": "Cultural",
+      "type": "polygon"
+    },
+
+    {
+      "source": "ne_110m_rivers_lake_centerlines",
+      "display_name": "River",
+      "name": "river",
+      "catagory": "Physical",
+      "type": "line"
+    },
+
+    {
+      "source": "ne_110m_geography_marine_polys",
+      "display_name": "Ocean",
+      "name": "ocean",
+      "catagory": "Physical",
+      "type": "polygon"
+    }
+  ]
+}
