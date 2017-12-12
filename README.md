@@ -20,7 +20,7 @@ A responsive web map application template using [Bootstrap](https://getbootstrap
 
 
 ## Demo:
-Coming soon
+![Demo](https://cdettlaff.github.io./)
 
 
 ## Quick Preview:
