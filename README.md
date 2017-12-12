@@ -1,4 +1,4 @@
-# PortGIS Public 
+# PortMap
 A responsive web map application template using [Bootstrap](https://getbootstrap.com/) and [Mapbox GL](https://www.mapbox.com/mapbox-gl-js/api/)
 
 
