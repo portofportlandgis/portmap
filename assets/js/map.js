@@ -1,11 +1,11 @@
 mapboxgl.accessToken = '<your access token here>';
 var map = new mapboxgl.Map({
-    container: 'map', 
+    container: 'map',
     style: 'mapbox://styles/mapbox/light-v9',
-    center: [0, 0], 
-    zoom: 1, 
+    center: [0, 0],
+    zoom: 1,
     attributionControl: true,
-    preserveDrawingBuffer: true, 
+    preserveDrawingBuffer: true,
 });
 
 // navigation controls
@@ -24,7 +24,7 @@ map.addControl(new mapboxgl.GeolocateControl());
 //This overides the Bootstrap modal "enforceFocus" to allow user interaction with main map
 $.fn.modal.Constructor.prototype.enforceFocus = function () { };
 
-// print function 
+// print function
 var printBtn = document.getElementById('mapboxgl-ctrl-print');
 var exportView = document.getElementById('export-map');
 
@@ -63,7 +63,7 @@ $('#clear_general').on('click', function (e) {
 });
 
 // Geocoder API
-// Geocoder API 
+// Geocoder API
 // Geocoder API
 var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
@@ -119,7 +119,7 @@ map.on('click', function (e) {
 //Layer Tree
 
 //Load Layers
-// Layers that load first will be at the bottom of the root directory within the Layer Tree 
+// Layers that load first will be at the bottom of the root directory within the Layer Tree
 
 var emptyGJ = {
     'type': 'FeatureCollection',
@@ -129,7 +129,7 @@ var emptyGJ = {
 map.on('load', function () {
 
     //monster layers
-    //monster layer sources 
+    //monster layer sources
     map.addSource('monster', { type: 'geojson', data: emptyGJ });
     map.addSource('mouth', { type: 'geojson', data: emptyGJ });
     map.addSource('water', { type: 'geojson', data: emptyGJ });
@@ -289,8 +289,8 @@ map.on('load', function () {
                   '<hr>' +
                   '<b>City: </b>' + feature.properties.name +
                   '<hr>' +
-				  '<b>Country: </b>' + feature.properties.sov0name +
-				  '<hr>' 
+                  '<b>Country: </b>' + feature.properties.sov0name +
+                  '<hr>'
         }
 
         if (map.queryRenderedFeatures(e.point, { layers: ['country'] }).length) {
@@ -303,7 +303,7 @@ map.on('load', function () {
               '<b>Port Name </b>' + feature.properties.admin +
               '<hr>' +
               '<b>Code: </b>' + feature.properties.adm0_a3 +
-              '<hr>' 
+              '<hr>'
         }
 
         //Monster - Layer Info
@@ -318,14 +318,14 @@ map.on('load', function () {
                   '<b>Name: </b>' + 'Mr. Claw'+
                   '<hr>' +
                   '<b>Place of Birth: </b>' + 'Atlantic Ocean' +
-			      '<hr>' +
+                  '<hr>' +
                   '<b>Likes: </b>' + 'Birthday Parties' +
-			      '<hr>' +
+                  '<hr>' +
                   '<b>Dislikes: </b>' + 'Seafood Festivals' +
-			      '<hr>'
+                  '<hr>'
         }
 
- 
+
         //Physical - Layer Info
         //Physical  - Layer Info
         if (map.queryRenderedFeatures(e.point, { layers: ['ocean'] }).length) {
@@ -347,11 +347,11 @@ map.on('load', function () {
                   '<h5>Major Rivers</h5>' +
                   '<hr>' +
                   '<b>Name: </b>' + feature.properties.name +
-                  '<hr>' 
+                  '<hr>'
         }
     });
 
-    //cursor = pointer on hover configuration 
+    //cursor = pointer on hover configuration
     map.on('mousemove', function (e) {
         var features = map.queryRenderedFeatures(e.point, {
             layers: ['ocean', 'river', 'country', 'populated', 'monster']
@@ -412,7 +412,7 @@ map.on('load', function () {
         }
     });
 
-   
+
     //Highlight - Monster
     map.on("click", function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["monster"] });
@@ -437,7 +437,7 @@ map.on('load', function () {
         }
     });
 
- 
+
     //Highlight - Physical
     map.on("click", function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["river"] });
@@ -462,7 +462,7 @@ map.on('load', function () {
         }
     });
 
-   
+
     map.on("click", function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["ocean"] });
 
@@ -488,8 +488,8 @@ map.on('load', function () {
 });
 
 
-// Directory Options 
-// Directory Options 
+// Directory Options
+// Directory Options
 // Directory Options - open or closed by defualt (true/false)
 
 var directoryOptions =
@@ -515,7 +515,7 @@ var directoryOptions =
 var layers =
 
 [
- 
+
     // Monster LAYER TREE CONFIG
     // Monster LAYER TREE CONFIG
     {
@@ -590,7 +590,7 @@ var layers =
         'path': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_geography_marine_polys.geojson',
         'directory': 'Physical',
     },
-   
+
 ];
 
 
@@ -1008,10 +1008,9 @@ populatePalette();
 map.on('click', addEditLabels);
 
 
-
 //Draw Tools function
 //Draw Tools function
-//Draw Tools function 
+//Draw Tools function
 var draw = new MapboxDraw({
     displayControlsDefault: false,
     controls: {
@@ -1026,117 +1025,184 @@ var drawTool = document.getElementById('drawAppend');
 drawTool.appendChild(draw.onAdd(map))
 
 
-
 //// Turf Area Calc
+var selectedUnits = '';
+var selectedMeasuredFeature = '';
+var measurementActive = false;
 
-var calcButton = document.getElementById('calculate');
-calcButton.onclick = function () {
+$(function(){
+    // set unit value
+    selectedUnits = $('input[type=radio][name=unit]:checked').val();
 
+    $('input[type=radio][name=unit]').change(function() {
+        selectedUnits = this.value;
+
+        //update values based on new units
+        if (selectedMeasuredFeature !== '' || measurementActive) {
+            var gj = draw.get(selectedMeasuredFeature);
+            calculateDimensions(gj);
+        }
+    })
+});
+
+function removeMeasurementValues() {
+    $('#calculated-area p').remove();
+    $('#calculated-length p').remove();
+}
+
+function calculateDimensions(data) {
+    if (!data.id) return;
+
+    var area, rounded_area, areaAnswer, length, rounded_length, lineAnswer;
     //FEET
-    if (document.getElementById('feet').checked) {
+    if (selectedUnits === 'feet') {
 
-        var data = draw.getSelected();
-        if (data.features.length > 0) {
-            var area = turf.area(data) / 0.09290304;
-            // restrict to 2 decimal points
-            var rounded_area = Math.round(area * 100) / 100;
-            var answer = document.getElementById('calculated-area');
-            answer.innerHTML = '<p>' + rounded_area + ' ft<sup>2</sup></p>';
-        } if (data.features.length > 0) {
-            var length = turf.lineDistance(data, 'meters') / 0.3048;
-            // restrict to 2 decimal points
-            var rounded_length = Math.round(length * 100) / 100;
-            var answer = document.getElementById('calculated-length');
-            answer.innerHTML = '<p>' + rounded_length + ' ft</p>';
-        } else {
-            alert("Draw or Select a Line or Polygon before calculating!");
+        area = turf.area(data) / 0.09290304;
+        // restrict to 2 decimal points
+        rounded_area = Math.round(area * 100) / 100;
+        areaAnswer = document.getElementById('calculated-area');
+        areaAnswer.innerHTML = '<p>' + rounded_area + ' ft<sup>2</sup></p>';
+
+        length = turf.lineDistance(data, 'meters') / 0.3048;
+        // restrict to 2 decimal points
+        rounded_length = Math.round(length * 100) / 100;
+        lineAnswer = document.getElementById('calculated-length');
+        lineAnswer.innerHTML = '<p>' + rounded_length + ' ft</p>';
+
+    //METER
+    } else if (selectedUnits === 'meter') {
+
+        area = turf.area(data);
+        // restrict to 2 decimal points
+        rounded_area = Math.round(area * 100) / 100;
+        areaAnswer = document.getElementById('calculated-area');
+        areaAnswer.innerHTML = '<p>' + rounded_area + ' m<sup>2</sup></p>';
+
+        length = turf.lineDistance(data, 'meters');
+        // restrict to 2 decimal points
+        rounded_length = Math.round(length * 100) / 100;
+        lineAnswer = document.getElementById('calculated-length');
+        lineAnswer.innerHTML = '<p>' + rounded_length + ' m</p>';
+
+     //MILE
+    } else if (selectedUnits === 'mile') {
+
+        area = turf.area(data) / 2589988.11;
+        // restrict to 4 decimal points
+        rounded_area = Math.round(area * 10000) / 10000;
+        areaAnswer = document.getElementById('calculated-area');
+        areaAnswer.innerHTML = '<p>' + rounded_area + ' mi<sup>2</sup></p>';
+
+        length = turf.lineDistance(data, 'meters') / 1609.344;
+        // restrict  to 2 decimal points
+        rounded_length = Math.round(length * 100) / 100;
+        lineAnswer = document.getElementById('calculated-length');
+        lineAnswer.innerHTML = '<p>' + rounded_length + ' mi</p>';
+
+    //KILOMETER
+    } else if (selectedUnits === 'kilometer') {
+
+        area = turf.area(data) / 1000000;
+        // restrict to 4 decimal points
+        rounded_area = Math.round(area * 10000) / 10000;
+        areaAnswer = document.getElementById('calculated-area');
+        areaAnswer.innerHTML = '<p>' + rounded_area + ' km<sup>2</sup></p>';
+
+        length = turf.lineDistance(data, 'meters') / 1000;
+        // restrict to 2 decimal points
+        rounded_length = Math.round(length * 100) / 100;
+        lineAnswer = document.getElementById('calculated-length');
+        lineAnswer.innerHTML = '<p>' + rounded_length + ' km</p>';
+
+    //ACRE
+    } else if (selectedUnits === 'acre') {
+
+        area = turf.area(data) / 4046.85642;
+        // restrict  to 4 decimal points
+        rounded_area = Math.round(area * 10000) / 10000;
+        areaAnswer = document.getElementById('calculated-area');
+        areaAnswer.innerHTML = '<p>' + rounded_area + ' acres</p>';
+
+        length = turf.lineDistance(data, 'meters') / 0.3048;
+        // restrict to 2 decimal points
+        rounded_length = Math.round(length * 100) / 100;
+        lineAnswer = document.getElementById('calculated-length');
+        lineAnswer.innerHTML = '<p>' + rounded_length + ' ft</p>';
+
+    }
+}
+
+// callback fires on the events listed below and fires the
+// above calculateDimensions function
+var calculateCallback = function(e) {
+    if (e.features.length && (e.features[0].geometry.type === 'Polygon' || e.features[0].geometry.type === 'LineString')) {
+        measurementActive = true;
+        selectedMeasuredFeature = e.features[0].id;
+        calculateDimensions(e.features[0]);
+    }
+}
+
+map.on('draw.create', calculateCallback);
+map.on('draw.update', calculateCallback);
+map.on('draw.selectionchange', calculateCallback);
+
+map.on('draw.delete', function(e) {
+    selectedMeasuredFeature = '';
+    measurementActive = false;
+    removeMeasurementValues();
+});
+
+// apparently there's no method to track/watch a drag or vertex
+// of a newly instantiated feature that has yet to be 'created'
+// or perhaps it's not documented anywhere in GL Draw
+// so we have to make our own
+map.on('mousemove', function(e) {
+    if (draw.getMode() === 'draw_line_string' || draw.getMode() === 'draw_polygon') {
+       var linePts = draw.getFeatureIdsAt(e.point);
+
+        if (linePts.length) {
+            // some draw features return back as undefined
+            var activeID = linePts.filter(function(feat) {
+                return typeof feat === 'string';
+            })
+
+            if (activeID.length) {
+                measurementActive = true;
+                selectedMeasuredFeature = activeID[0];
+
+                var fc = draw.get(selectedMeasuredFeature);
+                calculateDimensions(fc);
+            }
         }
+    } else if (draw.getMode() === 'direct_select' && selectedMeasuredFeature !== '') {
+        var fc = draw.get(selectedMeasuredFeature);
 
-
-        //METER
-    } else if (document.getElementById('meter').checked) {
-
-        var data = draw.getSelected();
-        if (data.features.length > 0) {
-            var area = turf.area(data);
-            // restrict to 2 decimal points
-            var rounded_area = Math.round(area * 100) / 100;
-            var answer = document.getElementById('calculated-area');
-            answer.innerHTML = '<p>' + rounded_area + ' m<sup>2</sup></p>';
-        } if (data.features.length > 0) {
-            var length = turf.lineDistance(data, 'meters');
-            // restrict to 2 decimal points
-            var rounded_length = Math.round(length * 100) / 100;
-            var answer = document.getElementById('calculated-length');
-            answer.innerHTML = '<p>' + rounded_length + ' m</p>';
-        } else {
-            alert("Draw or Select a Line or Polygon before calculating!");
-        }
-
-        //MILE
-    } else if (document.getElementById('mile').checked) {
-
-        var data = draw.getSelected();
-        if (data.features.length > 0) {
-            var area = turf.area(data) / 2589988.11;
-            // restrict to 4 decimal points
-            var rounded_area = Math.round(area * 10000) / 10000;
-            var answer = document.getElementById('calculated-area');
-            answer.innerHTML = '<p>' + rounded_area + ' mi<sup>2</sup></p>';
-        } if (data.features.length > 0) {
-            var length = turf.lineDistance(data, 'meters') / 1609.344;
-            // restrict  to 2 decimal points
-            var rounded_length = Math.round(length * 100) / 100;
-            var answer = document.getElementById('calculated-length');
-            answer.innerHTML = '<p>' + rounded_length + ' mi</p>';
-        } else {
-            alert("Draw or Select a Line or Polygon before calculating!");
-        }
-
-        //KILOMETER
-    } else if (document.getElementById('kilometer').checked) {
-
-        var data = draw.getSelected();
-        if (data.features.length > 0) {
-            var area = turf.area(data) / 1000000;
-            // restrict to 4 decimal points
-            var rounded_area = Math.round(area * 10000) / 10000;
-            var answer = document.getElementById('calculated-area');
-            answer.innerHTML = '<p>' + rounded_area + ' km<sup>2</sup></p>';
-        } if (data.features.length > 0) {
-            var length = turf.lineDistance(data, 'meters') / 1000;
-            // restrict to 2 decimal points
-            var rounded_length = Math.round(length * 100) / 100;
-            var answer = document.getElementById('calculated-length');
-            answer.innerHTML = '<p>' + rounded_length + ' km</p>';
-        } else {
-            alert("Draw or Select a Line or Polygon before calculating!");
-        }
-
-        //ACRE
-    } else if (document.getElementById('acre').checked) {
-
-        var data = draw.getSelected();
-        if (data.features.length > 0) {
-            var area = turf.area(data) / 4046.85642;
-            // restrict  to 4 decimal points
-            var rounded_area = Math.round(area * 10000) / 10000;
-            var answer = document.getElementById('calculated-area');
-            answer.innerHTML = '<p>' + rounded_area + ' acres</p>';
-        }
-        if (data.features.length > 0) {
-            var length = turf.lineDistance(data, 'meters') / 0.3048;
-            // restrict to 2 decimal points
-            var rounded_length = Math.round(length * 100) / 100;
-            var answer = document.getElementById('calculated-length');
-            answer.innerHTML = '<p>' + rounded_length + ' ft</p>';
-        } else {
-            alert("Draw or Select a Line or Polygon before calculating!");
+        if (fc.geometry.type === 'LineString' || fc.geometry.type === 'Polygon') {
+            calculateDimensions(fc);
         }
 
     }
-};
+});
 
+// remove measurements from input
+map.on('click', function(e){
+    if (measurementActive) {
+        var measuredFeature = draw.getFeatureIdsAt(e.point);
 
+        if (measuredFeature.length) {
+            // some draw features return back as undefined
+            var mF = measuredFeature.filter(function(feat) {
+                return typeof feat === 'string';
+            })
 
+            selectedMeasuredFeature = mF.length ? mF[0] : '';
 
+        } else {
+            removeMeasurementValues();
+        }
+    } else {
+        removeMeasurementValues();
+    }
+
+    measurementActive = false;
+});
