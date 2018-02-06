@@ -21,6 +21,20 @@ button:focus {
     background: #e8e8e8;
 }
 
+#customDrawPalette {
+    padding: 0;
+    margin: 0;
+}
+
+.draw-color-change {
+   height: 18px;
+   width: 18px;
+   border-radius: 0px;
+   margin-right: 2px;
+   display: inline-flex;
+   cursor: pointer;
+}
+
 #calculate {
 
     background-color: none;
