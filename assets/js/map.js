@@ -1278,21 +1278,49 @@ var draw = new MapboxDraw({
         // new styles for toggling colors
 
         {
-            'id': 'gl-draw-polygon-color-picker',
+            'id': 'gl-draw-polygon-fill-inactive-color-picker',
             'type': 'fill',
-            'filter': ['all', ['==', '$type', 'Polygon'],
+            'filter': ['all', ['==', 'active', 'false'],
+                ['==', '$type', 'Polygon'],
+                ['!=', 'mode', 'static'],
                 ['has', 'user_portColor']
             ],
             'paint': {
                 'fill-color': ['get', 'user_portColor'],
                 'fill-outline-color': ['get', 'user_portColor'],
-                'fill-opacity': 0.5
+                'fill-opacity': 0.1
             }
         },
         {
-            'id': 'gl-draw-polygon-stroke-color-picker',
+            'id': 'gl-draw-polygon-fill-active-color-picker',
+            'type': 'fill',
+            'filter': ['all', ['==', 'active', 'true'],
+                ['==', '$type', 'Polygon'],
+                ['has', 'user_portColor']
+            ],
+            'paint': {
+                'fill-color': ['get', 'user_portColor'],
+                'fill-outline-color': ['get', 'user_portColor'],
+                'fill-opacity': 0.1
+            }
+        },
+        {
+            'id': 'gl-draw-polygon-midpoint-color-picker',
+            'type': 'circle',
+            'filter': ['all', ['==', '$type', 'Point'],
+                ['==', 'meta', 'midpoint']
+            ],
+            'paint': {
+                'circle-radius': 3,
+                'circle-color': '#fbb03b'
+            }
+        },
+        {
+            'id': 'gl-draw-polygon-stroke-inactive-color-picker',
             'type': 'line',
-            'filter': ['all', ['==', '$type', 'Polygon'],
+            'filter': ['all', ['==', 'active', 'false'],
+                ['==', '$type', 'Polygon'],
+                ['!=', 'mode', 'static'],
                 ['has', 'user_portColor']
             ],
             'layout': {
@@ -1305,21 +1333,129 @@ var draw = new MapboxDraw({
             }
         },
         {
-            'id': 'gl-draw-line-color-picker',
+            'id': 'gl-draw-polygon-stroke-active-color-picker',
             'type': 'line',
-            'filter': ['all', ['==', '$type', 'LineString'],
+            'filter': ['all', ['==', 'active', 'true'],
+                ['==', '$type', 'Polygon'],
                 ['has', 'user_portColor']
             ],
+            'layout': {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            'paint': {
+                'line-color': ['get', 'user_portColor'],
+                'line-dasharray': [0.2, 2],
+                'line-width': 2
+            }
+        },
+        {
+            'id': 'gl-draw-line-inactive-color-picker',
+            'type': 'line',
+            'filter': ['all', ['==', 'active', 'false'],
+                ['==', '$type', 'LineString'],
+                ['!=', 'mode', 'static'],
+                ['has', 'user_portColor']
+            ],
+            'layout': {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
             'paint': {
                 'line-color': ['get', 'user_portColor'],
                 'line-width': 2
             }
         },
         {
-            'id': 'gl-draw-polygon-and-line-vertex-color-picker',
+            'id': 'gl-draw-line-active-color-picker',
+            'type': 'line',
+            'filter': ['all', ['==', '$type', 'LineString'],
+                ['==', 'active', 'true'],
+                ['has', 'user_portColor']
+            ],
+            'layout': {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            'paint': {
+                'line-color': ['get', 'user_portColor'],
+                'line-dasharray': [0.2, 2],
+                'line-width': 2
+            }
+        },
+        {
+            'id': 'gl-draw-polygon-and-line-vertex-stroke-inactive-color-picker',
             'type': 'circle',
             'filter': ['all', ['==', 'meta', 'vertex'],
+                ['!=', 'active', 'true'],
                 ['==', '$type', 'Point'],
+                ['!=', 'mode', 'static']
+            ],
+            'paint': {
+                'circle-radius': 5,
+                'circle-color': '#fff'
+            }
+        },
+        {
+            'id': 'gl-draw-polygon-and-line-vertex-inactive-color-picker',
+            'type': 'circle',
+            'filter': ['all', ['==', 'meta', 'vertex'],
+                ['!=', 'active', 'true'],
+                ['==', '$type', 'Point'],
+                ['!=', 'mode', 'static']
+            ],
+            'paint': {
+                'circle-radius': 3,
+                'circle-color': '#fbb03b'
+            }
+        },
+        {
+            'id': 'gl-draw-polygon-and-line-vertex-stroke-active-color-picker',
+            'type': 'circle',
+            'filter': ['all', ['==', 'meta', 'vertex'],
+                ['==', 'active', 'true'],
+                ['==', '$type', 'Point'],
+                ['!=', 'mode', 'static']
+            ],
+            'paint': {
+                'circle-radius': 7,
+                'circle-color': '#fff'
+            }
+        },
+        {
+            'id': 'gl-draw-polygon-and-line-vertex-active-color-picker',
+            'type': 'circle',
+            'filter': ['all', ['==', 'meta', 'vertex'],
+                ['==', 'active', 'true'],
+                ['==', '$type', 'Point'],
+                ['!=', 'mode', 'static']
+            ],
+            'paint': {
+                'circle-radius': 5,
+                'circle-color': '#fbb03b'
+            }
+        },
+        {
+            'id': 'gl-draw-point-point-stroke-inactive-color-picker',
+            'type': 'circle',
+            'filter': ['all', ['==', 'active', 'false'],
+                ['==', '$type', 'Point'],
+                ['==', 'meta', 'feature'],
+                ['!=', 'mode', 'static'],
+                ['has', 'user_portColor']
+            ],
+            'paint': {
+                'circle-radius': 5,
+                'circle-opacity': 1,
+                'circle-color': '#fff'
+            }
+        },
+        {
+            'id': 'gl-draw-point-inactive-color-picker',
+            'type': 'circle',
+            'filter': ['all', ['==', 'active', 'false'],
+                ['==', '$type', 'Point'],
+                ['==', 'meta', 'feature'],
                 ['!=', 'mode', 'static'],
                 ['has', 'user_portColor']
             ],
@@ -1329,15 +1465,16 @@ var draw = new MapboxDraw({
             }
         },
         {
-            'id': 'gl-draw-point-color-picker',
+            'id': 'gl-draw-point-stroke-active-color-picker',
             'type': 'circle',
-            'filter': ['all',
-                ['==', '$type', 'Point'],
+            'filter': ['all', ['==', '$type', 'Point'],
+                ['==', 'active', 'true'],
+                ['!=', 'meta', 'midpoint'],
                 ['has', 'user_portColor']
             ],
             'paint': {
-                'circle-radius': 3,
-                'circle-color': ['get', 'user_portColor']
+                'circle-radius': 7,
+                'circle-color': '#fff'
             }
         },
         {
@@ -1353,6 +1490,64 @@ var draw = new MapboxDraw({
                 'circle-color': ['get', 'user_portColor']
             }
         },
+        {
+            'id': 'gl-draw-polygon-fill-static-color-picker',
+            'type': 'fill',
+            'filter': ['all', ['==', 'mode', 'static'],
+                ['==', '$type', 'Polygon'],
+                ['has', 'user_portColor']
+            ],
+            'paint': {
+                'fill-color': ['get', 'user_portColor'],
+                'fill-outline-color': ['get', 'user_portColor'],
+                'fill-opacity': 0.1
+            }
+        },
+        {
+            'id': 'gl-draw-polygon-stroke-static-color-picker',
+            'type': 'line',
+            'filter': ['all', ['==', 'mode', 'static'],
+                ['==', '$type', 'Polygon'],
+                ['has', 'user_portColor']
+            ],
+            'layout': {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            'paint': {
+                'line-color': ['get', 'user_portColor'],
+                'line-width': 2
+            }
+        },
+        {
+            'id': 'gl-draw-line-static-color-picker',
+            'type': 'line',
+            'filter': ['all', ['==', 'mode', 'static'],
+                ['==', '$type', 'LineString'],
+                ['has', 'user_portColor']
+            ],
+            'layout': {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            'paint': {
+                'line-color': ['get', 'user_portColor'],
+                'line-width': 2
+            }
+        },
+        {
+            'id': 'gl-draw-point-static-color-picker',
+            'type': 'circle',
+            'filter': ['all',
+                ['==', 'mode', 'static'],
+                ['==', '$type', 'Point'],
+                ['has', 'user_portColor']
+            ],
+            'paint': {
+                'circle-radius': 5,
+                'circle-color': ['get', 'user_portColor']
+            }
+        }
     ]
 });
 
@@ -1374,8 +1569,26 @@ function populateDrawPalette() {
     };
 }
 
+
+// vertices and midpoints don't inherit their parent properties
+// so we need to handle those edge cases
+function handleVerticesColors(color) {
+    // midppoints
+    map.setPaintProperty('gl-draw-polygon-midpoint-color-picker.hot', 'circle-color', color);
+    map.setPaintProperty('gl-draw-polygon-midpoint-color-picker.cold', 'circle-color', color);
+
+    // vertices
+    map.setPaintProperty('gl-draw-polygon-and-line-vertex-inactive-color-picker.cold', 'circle-color', color);
+    map.setPaintProperty('gl-draw-polygon-and-line-vertex-inactive-color-picker.hot', 'circle-color', color);
+
+    //active vertex
+    map.setPaintProperty('gl-draw-polygon-and-line-vertex-active-color-picker.cold', 'circle-color', color);
+    map.setPaintProperty('gl-draw-polygon-and-line-vertex-active-color-picker.hot', 'circle-color', color);
+}
+
 // color change function of draw features
 var changeDrawColor = function(e) {
+
     if (e.target.id && e.target.id.indexOf('draw-') === -1) return;
 
     var color = e.target.id.replace(/draw-/, '');
@@ -1383,19 +1596,31 @@ var changeDrawColor = function(e) {
     if (drawFeatureID !== '' && typeof draw === 'object') {
 
         draw.setFeatureProperty(drawFeatureID, 'portColor', color);
-
         var feat = draw.get(drawFeatureID);
-        draw.add(feat)
+        draw.add(feat);
+
+        handleVerticesColors(color);
     }
-}
+
+};
 
 // callback for draw.update and draw.selectionchange
 var setDrawFeature = function(e) {
     if (e.features.length && e.features[0].type === 'Feature') {
-        var feat = e.features[0];
-        drawFeatureID = feat.id;
+            var feat = e.features[0];
+            drawFeatureID = feat.id;
+
+            var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
+
+            // race conditions exist between events
+            // and draw's transitions between .hot and .cold layers
+            setTimeout(function(){
+                handleVerticesColors(c);
+            }, 50);
+
+        }
     }
-}
+};
 
 // Event Handlers for Draw Tools
 map.on('draw.create', function() {
@@ -1403,11 +1628,12 @@ map.on('draw.create', function() {
 });
 
 map.on('draw.update', setDrawFeature);
-
 map.on('draw.selectionchange', setDrawFeature);
 
 map.on('click', function(e) {
     if (!newDrawFeature) {
+
+        handleVerticesColors('#fbb03b');
         var drawFeatureAtPoint = draw.getFeatureIdsAt(e.point);
 
         //if another drawFeature is not found - reset drawFeatureID
@@ -1415,7 +1641,6 @@ map.on('click', function(e) {
     }
 
     newDrawFeature = false;
-
 });
 
 
