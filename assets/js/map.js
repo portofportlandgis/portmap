@@ -1012,6 +1012,8 @@ map.on('click', addEditLabels);
 // custom draw styles paramaters
 var drawFeatureID = '';
 var newDrawFeature = false;
+var trackDrawnPolygons = [];
+var getLastDrawnPoly = false;
 
 //Draw Tools function
 //Draw Tools function
@@ -1569,6 +1571,29 @@ function populateDrawPalette() {
     };
 }
 
+function handlePolygonOrder(clickedFeats) {
+    if (clickedFeats.length > 1) {
+        var tempTrack = trackDrawnPolygons.filter(function(p) {
+            return clickedFeats.indexOf(p) > -1;
+        });
+
+        var lastPoly = tempTrack[tempTrack.length - 1];
+        draw.changeMode('direct_select', { featureId: lastPoly});
+
+        var feat = draw.get(lastPoly);
+        var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
+        handleVerticesColors(c);
+
+    } else if (clickedFeats.length === 1) {
+
+        var feat = draw.get(clickedFeats[0]);
+        var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
+        handleVerticesColors(c);
+    }
+
+    getLastDrawnPoly = false;
+}
+
 
 // vertices and midpoints don't inherit their parent properties
 // so we need to handle those edge cases
@@ -1599,7 +1624,11 @@ var changeDrawColor = function(e) {
         var feat = draw.get(drawFeatureID);
         draw.add(feat);
 
-        handleVerticesColors(color);
+       // race conditions exist between events
+       // and draw's transitions between .hot and .cold layers
+       setTimeout(function(){
+           handleVerticesColors(color);
+       }, 50);
     }
 
 };
@@ -1610,26 +1639,55 @@ var setDrawFeature = function(e) {
         var feat = e.features[0];
         drawFeatureID = feat.id;
 
-        var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
+        if (feat.geometry.type === 'Polygon' && trackDrawnPolygons.length > 1 && draw.getMode() !== 'draw_polygon' &&
+            feat.id !== trackDrawnPolygons[trackDrawnPolygons.length - 1]) {
+                getLastDrawnPoly = true;
+        } else {
+            var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
 
-        // race conditions exist between events
-        // and draw's transitions between .hot and .cold layers
-        setTimeout(function(){
-            handleVerticesColors(c);
-        }, 50);
+            // race conditions exist between events
+            // and draw's transitions between .hot and .cold layers
+            setTimeout(function(){
+                handleVerticesColors(c);
+            }, 50);
+        }
     }
 };
 
 // Event Handlers for Draw Tools
-map.on('draw.create', function() {
+map.on('draw.create', function(e) {
     newDrawFeature = true;
+    if (e.features.length && e.features[0].geometry.type === 'Polygon') {
+        trackDrawnPolygons.push(e.features[0].id);
+    }
+});
+
+// track handling for polygon features
+map.on('draw.delete', function(e) {
+    if (e.features.length) {
+        var feats = e.features;
+        var featsToRemove = [];
+
+        for (var i = feats.length - 1; i >= 0; i--) {
+            featsToRemove.push(feats[i].id);
+        }
+
+        var tempTrack = trackDrawnPolygons.filter(function(p) {
+            return featsToRemove.indexOf(p) < 0;
+        });
+
+        trackDrawnPolygons = tempTrack;
+    }
 });
 
 map.on('draw.update', setDrawFeature);
 map.on('draw.selectionchange', setDrawFeature);
 
 map.on('click', function(e) {
-    if (!newDrawFeature) {
+    if (getLastDrawnPoly) {
+        var clickedFeats = draw.getFeatureIdsAt(e.point);
+        handlePolygonOrder(clickedFeats);
+    } else if (!newDrawFeature) {
 
         handleVerticesColors('#fbb03b');
         var drawFeatureAtPoint = draw.getFeatureIdsAt(e.point);
