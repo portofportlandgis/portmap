@@ -1607,18 +1607,16 @@ var changeDrawColor = function(e) {
 // callback for draw.update and draw.selectionchange
 var setDrawFeature = function(e) {
     if (e.features.length && e.features[0].type === 'Feature') {
-            var feat = e.features[0];
-            drawFeatureID = feat.id;
+        var feat = e.features[0];
+        drawFeatureID = feat.id;
 
-            var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
+        var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
 
-            // race conditions exist between events
-            // and draw's transitions between .hot and .cold layers
-            setTimeout(function(){
-                handleVerticesColors(c);
-            }, 50);
-
-        }
+        // race conditions exist between events
+        // and draw's transitions between .hot and .cold layers
+        setTimeout(function(){
+            handleVerticesColors(c);
+        }, 50);
     }
 };
 
