@@ -1,5 +1,4 @@
 /* Bootstrap custom css */
-@media(min-width:1025px) {
     #searchModal {
         position: absolute;
         left: 0px;
@@ -39,8 +38,6 @@
         bottom: auto;
         width: auto;
     }
-}
-
 
 
 #menu {
