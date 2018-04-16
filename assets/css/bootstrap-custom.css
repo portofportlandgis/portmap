@@ -22,7 +22,6 @@
         right: auto;
         bottom: auto;
         width: auto;
-        z-index: 1000;
     }
 
     #geolocationModal {
