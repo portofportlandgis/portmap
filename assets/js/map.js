@@ -1,4 +1,4 @@
-mapboxgl.accessToken = '<your access token here>';
+mapboxgl.accessToken = '<your accessToken here>';
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v9',
@@ -7,6 +7,9 @@ var map = new mapboxgl.Map({
     attributionControl: true,
     preserveDrawingBuffer: true,
 });
+
+// handles click/touch event across devices 
+let touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
 
 // navigation controls
 map.addControl(new mapboxgl.NavigationControl()); // zoom controls
@@ -104,7 +107,7 @@ map.on('load', function () {
 // Coordinates Tool
 // Coordinates Tool
 // Coordinates Tool
-map.on('click', function (e) {
+map.on(touchEvent, function (e) {
     document.getElementById('info').innerHTML =
 
         JSON.stringify(e.lngLat, function (key, val) {
@@ -264,13 +267,14 @@ map.on('load', function () {
     //Layer Info function
     //Layer Info function
     //Layer Info function
-    map.on('click', function (e) {
+
+    map.on(touchEvent, function (e) {
 
         document.getElementById("layer-attribute").innerHTML = "";
 
     });
 
-    map.on('click', function (e) {
+    map.on(touchEvent, function (e) {
 
         var popup = new mapboxgl.Popup();
         var feature;
@@ -365,7 +369,7 @@ map.on('load', function () {
     //Highlight Features Function
 
     // Highligt Environmental
-    map.on("click", function (e) {
+    map.on(touchEvent, function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["populated"] });
 
         if (map.getLayer("populated_hl")) {
@@ -388,7 +392,7 @@ map.on('load', function () {
         }
     });
 
-    map.on("click", function (e) {
+    map.on(touchEvent, function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["country"] });
 
         if (map.getLayer("country_hl")) {
@@ -413,7 +417,7 @@ map.on('load', function () {
 
 
     //Highlight - Monster
-    map.on("click", function (e) {
+    map.on(touchEvent, function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["monster"] });
 
         if (map.getLayer("monster_hl")) {
@@ -438,7 +442,7 @@ map.on('load', function () {
 
 
     //Highlight - Physical
-    map.on("click", function (e) {
+    map.on(touchEvent, function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["river"] });
 
         if (map.getLayer("river_hl")) {
@@ -462,7 +466,7 @@ map.on('load', function () {
     });
 
 
-    map.on("click", function (e) {
+    map.on(touchEvent, function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["ocean"] });
 
         if (map.getLayer("ocean_hl")) {
