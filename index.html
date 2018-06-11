@@ -94,6 +94,12 @@
             $(".se-pre-con").delay(2000).fadeOut(700);
         });
     </script>
+    
+    <script>
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
 
     <!--initial load screen -->
     <div class="se-pre-con">
