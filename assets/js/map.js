@@ -1,9 +1,10 @@
 mapboxgl.accessToken = '<your accessToken here>';
+
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v9',
-    center: [0, 0],
-    zoom: 1,
+    center: [-69.0297, 7.61],
+    zoom: 2,
     attributionControl: true,
     preserveDrawingBuffer: true,
 });
@@ -103,19 +104,13 @@ map.on('load', function () {
 
 });
 
-
 // Coordinates Tool
 // Coordinates Tool
 // Coordinates Tool
 map.on(touchEvent, function (e) {
     document.getElementById('info').innerHTML =
-
-        JSON.stringify(e.lngLat, function (key, val) {
-            return val.toFixed ? Number(val.toFixed(4)) : val;
-
-        });
+        JSON.stringify(e.lngLat, function (key, val) { return val.toFixed ? Number(val.toFixed(4)) : val; }).replace('{"lng":', '').replace('"lat":', ' ').replace('}', '')
 });
-
 
 //Layer Tree
 //Layer Tree
@@ -132,10 +127,10 @@ var emptyGJ = {
 map.on('load', function () {
 
     //monster layers
-    //monster layer sources
+    //Mr. Claw layer sources
     map.addSource('monster', { type: 'geojson', data: emptyGJ });
     map.addSource('mouth', { type: 'geojson', data: emptyGJ });
-    map.addSource('water', { type: 'geojson', data: emptyGJ });
+    map.addSource('water-line', { type: 'geojson', data: emptyGJ });
     map.addSource('eyes', { type: 'geojson', data: emptyGJ });
 
     map.addLayer({
@@ -143,7 +138,7 @@ map.on('load', function () {
         "type": "fill",
         "source": "monster",
         "layout": {
-            "visibility": 'none'
+           //"visibility": 'none'
         },
         "paint": {
             'fill-color': '#b30000',
@@ -156,7 +151,7 @@ map.on('load', function () {
         "type": "fill",
         "source": "mouth",
         "layout": {
-            "visibility": 'none'
+            //"visibility": 'none'
         },
         "paint": {
             'fill-color': 'white',
@@ -165,11 +160,11 @@ map.on('load', function () {
     });
 
     map.addLayer({
-        "id": "water",
+        "id": "water-line",
         "type": "line",
-        "source": "water",
+        "source": "water-line",
         "layout": {
-            "visibility": 'none'
+           // "visibility": 'none'
         },
         "paint": {
             'line-color': '#0099ff',
@@ -183,7 +178,7 @@ map.on('load', function () {
         "type": "circle",
         "source": "eyes",
         "layout": {
-            "visibility": 'none'
+            //"visibility": 'none'
         },
         "paint": {
             'circle-color': 'white',
@@ -194,6 +189,67 @@ map.on('load', function () {
         }
     });
 
+    //monster layers
+    //Mr. Octo layer sources
+    map.addSource('octo', { type: 'geojson', data: emptyGJ });
+    map.addSource('water-line-2', { type: 'geojson', data: emptyGJ });
+    map.addSource('mouth2', { type: 'geojson', data: emptyGJ });
+    map.addSource('eyes2', { type: 'geojson', data: emptyGJ });
+
+    map.addLayer({
+        "id": "octo",
+        "type": "fill",
+        "source": "octo",
+        "layout": {
+            //"visibility": 'none'
+        },
+        "paint": {
+            'fill-color': 'black',
+            'fill-opacity': 1.0
+        }
+    });
+
+    map.addLayer({
+        "id": "water-line-2",
+        "type": "line",
+        "source": "water-line-2",
+        "layout": {
+            // "visibility": 'none'
+        },
+        "paint": {
+            'line-color': '#0099ff',
+            'line-opacity': 1.0,
+            "line-width": 9,
+        },
+    });
+    map.addLayer({
+        "id": "mouth2",
+        "type": "fill",
+        "source": "mouth2",
+        "layout": {
+            //"visibility": 'none'
+        },
+        "paint": {
+            'fill-color': 'white',
+            'fill-opacity': 1.0
+        }
+    });
+
+    map.addLayer({
+        "id": "eyes2",
+        "type": "circle",
+        "source": "eyes2",
+        "layout": {
+            //"visibility": 'none'
+        },
+        "paint": {
+            'circle-color': 'red',
+            'circle-opacity': 1.0,
+            'circle-stroke-color': 'lightblue',
+            'circle-stroke-width': 4,
+            'circle-stroke-opacity': 1.0,
+        }
+    });
 
     //cultural layers
     //cultural layers
@@ -230,6 +286,7 @@ map.on('load', function () {
         }
     });
 
+
     //physical layers
     //physical layers
     map.addSource('ocean', { type: 'geojson', data: emptyGJ });
@@ -262,12 +319,10 @@ map.on('load', function () {
         },
     });
 
-
     //Layer Info function
     //Layer Info function
     //Layer Info function
     //Layer Info function
-
     map.on(touchEvent, function (e) {
 
         document.getElementById("layer-attribute").innerHTML = "";
@@ -328,6 +383,25 @@ map.on('load', function () {
                   '<hr>'
         }
 
+        //Monster - Layer Info
+        //Monster - Layer Info
+        if (map.queryRenderedFeatures(e.point, { layers: ['octo'] }).length) {
+
+            feature = map.queryRenderedFeatures(e.point, { layers: ['octo'] })[0];
+
+            append.innerHTML +=
+                  '<h5>Monster Info</h5>' +
+                  '<hr>' +
+                  '<b>Name: </b>' + 'Mr. Octo' +
+                  '<hr>' +
+                  '<b>Place of Birth: </b>' + 'Pacific Ocean' +
+                  '<hr>' +
+                  '<b>Likes: </b>' + 'Big Salads' +
+                  '<hr>' +
+                  '<b>Dislikes: </b>' + 'Jules Verne' +
+                  '<hr>'
+        }
+
 
         //Physical - Layer Info
         //Physical  - Layer Info
@@ -357,18 +431,15 @@ map.on('load', function () {
     //cursor = pointer on hover configuration
     map.on('mousemove', function (e) {
         var features = map.queryRenderedFeatures(e.point, {
-            layers: ['ocean', 'river', 'country', 'populated', 'monster']
+            layers: ['ocean', 'river', 'country', 'populated', 'monster', 'octo']
         });
         map.getCanvas().style.cursor = (features.length) ? 'default' : '';
     });
 
-
     //Highlight Features Function
     //Highlight Features Function
     //Highlight Features Function
     //Highlight Features Function
-
-    // Highligt Environmental
     map.on(touchEvent, function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["populated"] });
 
@@ -415,8 +486,7 @@ map.on('load', function () {
         }
     });
 
-
-    //Highlight - Monster
+    //Highlight - Mr. Claw
     map.on(touchEvent, function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["monster"] });
 
@@ -440,6 +510,29 @@ map.on('load', function () {
         }
     });
 
+    //Highlight - Mr. Octo
+    map.on(touchEvent, function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: ["octo"] });
+
+        if (map.getLayer("octo_hl")) {
+            map.removeLayer("octo_hl");
+        }
+
+        if (features.length) {
+
+            map.addLayer({
+                "id": "octo_hl",
+                "type": "line",
+                "source": "octo",
+                "layout": {},
+                "paint": {
+                    "line-color": "cyan",
+                    "line-width": 3
+                },
+                "filter": ["==", "Id", features[0].properties.Id],
+            });
+        }
+    });
 
     //Highlight - Physical
     map.on(touchEvent, function (e) {
@@ -465,7 +558,6 @@ map.on('load', function () {
         }
     });
 
-
     map.on(touchEvent, function (e) {
         var features = map.queryRenderedFeatures(e.point, { layers: ["ocean"] });
 
@@ -490,15 +582,13 @@ map.on('load', function () {
     });
 });
 
-
 // Directory Options
 // Directory Options
 // Directory Options - open or closed by defualt (true/false)
-
 var directoryOptions =
 [
     {
-        'name': 'Monster',
+        'name': 'Monsters',
         'open': true
     },
     {
@@ -512,19 +602,16 @@ var directoryOptions =
 
 ];
 
-
 // organize layers in the layer tree
-
 var layers =
 
 [
-
-    // Monster LAYER TREE CONFIG
-    // Monster LAYER TREE CONFIG
+    // Mr Claw LAYER TREE CONFIG
+    // Mr Claw LAYER TREE CONFIG
     {
-        'name': 'Monster',
+        'name': 'Mr Claw',
         'id': 'monster_group',
-        'hideLabel': ['mouth', 'water', 'eyes'],
+        'hideLabel': ['mouth', 'water-line', 'eyes', 'monster'],
         'icon': 'assets/images/layer-stack-15.svg',
         'layerGroup': [
             {
@@ -540,8 +627,8 @@ var layers =
                 'path': 'assets/json/mouth.json',
             },
             {
-                'id': 'water',
-                'source': 'water',
+                'id': 'water-line',
+                'source': 'water-line',
                 'name': 'Water',
                 'path': 'assets/json/water.json',
             },
@@ -553,9 +640,44 @@ var layers =
             },
 
         ],
-        'directory': 'Monster'
+        'directory': 'Monsters'
     },
 
+    // Mr Octo LAYER TREE CONFIG
+    // Mr Octo LAYER TREE CONFIG
+    {
+        'name': 'Mr. Octo',
+        'id': 'monster_group_2',
+        'hideLabel': ['octo', 'water-line-2', 'eyes2', 'mouth2'],
+        'icon': 'assets/images/layer-stack-15.svg',
+        'layerGroup': [
+            {
+                'id': 'octo',
+                'source': 'octo',
+                'name': 'Mr. Octo',
+                'path': 'assets/json/octo.json',
+            },
+            {
+                'id': 'water-line-2',
+                'source': 'water-line-2',
+                'name': 'Water',
+                'path': 'assets/json/water2.json',
+            },
+            {
+                'id': 'mouth2',
+                'source': 'mouth2',
+                'name': 'Mouth',
+                'path': 'assets/json/mouth2.json',
+            },
+            {
+                'id': 'eyes2',
+                'source': 'eyes2',
+                'name': 'Eyes',
+                'path': 'assets/json/eyes2.json',
+            },
+        ],
+        'directory': 'Monsters'
+    },
 
      // Cultural LAYER TREE CONFIG
      // Cultural LAYER TREE CONFIG

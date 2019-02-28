@@ -27,11 +27,11 @@
     <script src="assets/js/jquery.js"></script>
 
     <!-- Font Awesome -->
-    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
     <!-- Mapbox GL -->
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />
 
     <!-- Turf -->
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
@@ -69,6 +69,7 @@
             width: 100%;
         }
 
+      /*mapbox gl css override*/
         .mapboxgl-ctrl-group {
             border-radius: 0px;
             -moz-box-shadow: none;
@@ -82,6 +83,12 @@
             margin: 0 0 10px 65px;
             float: left;
         }
+
+        .mapboxgl-ctrl-group:not(:empty) {
+            -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+            -webkit-box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+        }
     </style>
 
 </head>
@@ -94,7 +101,7 @@
             $(".se-pre-con").delay(2000).fadeOut(700);
         });
     </script>
-    
+
     <script>
         document.addEventListener('touchmove', function (e) {
             e.preventDefault();
@@ -104,7 +111,7 @@
     <!--initial load screen -->
     <div class="se-pre-con">
         <h2 style="text-align: center; margin-top:20%; color: white">
-            <i class="fa fa-cog fa-spin"></i>&nbsp;+&nbsp;<i class="fa fa-globe"></i>&nbsp;=&nbsp;<i class="fa fa-smile-o"></i>
+            <i class="fa fa-cog fa-spin"></i>&nbsp;+&nbsp;<i class="fa fa-globe"></i>&nbsp;=&nbsp;<i class="fas fa-grin-hearts"></i>
         </h2>
     </div>
 
@@ -181,12 +188,12 @@
 
                     <li>
                         <!-- Draw Button -->
-                        <a class="clickable" data-toggle="modal" data-target="#drawModal" title="Draw & Measure"><i class="fa fa-fw fa-pencil"></i></a>
+                        <a class="clickable" data-toggle="modal" data-target="#drawModal" title="Draw & Measure"><i class="fas fa-fw fa-pencil-alt"></i></a>
                     </li>
 
                     <li>
                         <!-- Coordinates/Address Button -->
-                        <a class="clickable" data-toggle="modal" data-target="#geolocationModal" title="Search Address & Coords."><i class="fa fa-fw fa-map-marker"></i></a>
+                        <a class="clickable" data-toggle="modal" data-target="#geolocationModal" title="Search Address & Coords."><i class="fas fa-fw fa-map-marker-alt"></i></a>
                     </li>
 
                     <li>
@@ -202,7 +209,6 @@
                 </ul>
             </div>
         </nav>
-
 
         <!-- Start Modals - Tool Panels -->
         <!-- Start Modals - Tool Panels -->
@@ -264,16 +270,16 @@
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-fw fa-pencil"></i>&nbsp;Draw Tools</h4>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fas fa-fw fa-pencil-alt"></i>&nbsp;Draw Tools</h4>
                     </div>
 
                     <div class="modal-body">
 
                         <div id="drawAppend"></div>
-                                           
-                            <div style="display: flex; flex-direction: row">
-                                <div id='customDrawColor' style="padding-top: 7px;"></div>
-                            </div>
+
+                        <div style="display: flex; flex-direction: row">
+                            <div id='customDrawColor' style="padding-top: 7px;"></div>
+                        </div>
 
                         <hr style="margin-top: 10px; margin-bottom: 10px">
 
@@ -373,7 +379,7 @@
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-fw fa-map-marker"></i>&nbsp;Location Tools</h4>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fas fa-fw fa-map-marker-alt"></i>&nbsp;Location Tools</h4>
                     </div>
 
                     <div class="modal-body">
