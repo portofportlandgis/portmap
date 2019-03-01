@@ -1,6 +1,7 @@
 # PortMap
 A responsive web map application template using [Bootstrap](https://getbootstrap.com/) and [Mapbox GL](https://www.mapbox.com/mapbox-gl-js/api/)
 
+To get started you need to generate a Mapbox ID. Get your ID by creating a Mapbox account. Insert your Mapbox ID in assets/js/map.js on line 1. 
 
 ## What it does:
 * Layer tree allows the user to interactively organize and reposition map layers using [Mapbox-GL-JS-Layer-Tree](https://github.com/TheGartrellGroup/Mapbox-GL-JS-Layer-Tree)
