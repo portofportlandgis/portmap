@@ -187,9 +187,8 @@ $(document).ready(function () {
 
 function clearFilterLayer() {
     if (typeof map.getLayer('filter_layer') !== "undefined") {
-
-        map.removeSource("filter_layer");
         map.removeLayer("filter_layer");
+        map.removeSource("filter_layer");
     }
 }
 
