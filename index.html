@@ -31,7 +31,7 @@
 
     <!-- Mapbox GL -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet'/>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
 
     <!-- Turf -->
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
@@ -69,7 +69,7 @@
             width: 100%;
         }
 
-      /*mapbox gl css override*/
+        /*mapbox gl css override*/
         .mapboxgl-ctrl-group {
             border-radius: 0px;
             -moz-box-shadow: none;
@@ -88,6 +88,10 @@
             -moz-box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
             -webkit-box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
             box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .mapboxgl-ctrl-group > button + button {
+            border-top: 0;
         }
     </style>
 
@@ -270,48 +274,52 @@
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel"><i class="fas fa-fw fa-pencil-alt"></i>&nbsp;Draw Tools</h4>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-fw fa-pencil-alt"></i>&nbsp;Draw Tools</h4>
                     </div>
 
                     <div class="modal-body">
 
+                        <hr>
+                        <br />
+
+                        <p style="font-size: 12px"><i class="fas fa-draw-polygon"></i>  Use the Draw tools to create mark-ups on the map.</p>
                         <div id="drawAppend"></div>
 
                         <div style="display: flex; flex-direction: row">
                             <div id='customDrawColor' style="padding-top: 7px;"></div>
                         </div>
 
-                        <hr style="margin-top: 10px; margin-bottom: 10px">
-
+                        <br />
+                        <hr>
                         <br />
 
-                        <div style="display: inline-flex">
+                        <p style="font-size: 12px"><i class="fas fa-ruler"></i>  Use the Draw tools above to calculate area and distance.</p>
 
+                        <p style="font-size: 12px; margin: 0;">area:</p>
+                        <div id='calculated-area'> </div>
+
+                        <p style="font-size: 12px; margin: 0;">length/perimeter:</p>
+                        <div id='calculated-length'></div>
+
+                        <div style="display: inline-flex">
                             <i style="font-size:smaller; margin: 5px 4px 0px 4px;"><input type="radio" name="unit" id="feet" value="feet" checked="checked" /> ft &nbsp;</i>
                             <i style="font-size:smaller; margin: 5px 4px 0px 4px;"><input type="radio" name="unit" id="meter" value="meter" /> m &nbsp;</i>
                             <i style="font-size:smaller; margin: 5px 4px 0px 4px;"><input type="radio" name="unit" id="mile" value="mile" /> mi &nbsp;</i>
                             <i style="font-size:smaller; margin: 5px 4px 0px 4px;"><input type="radio" name="unit" id="kilometer" value="kilometer" /> km &nbsp;</i>
                             <i style="font-size:smaller; margin: 5px 0px 0px 4px;"><input type="radio" name="unit" id="acre" value="acre" /> acres &nbsp;</i>
-
                         </div>
 
-                        <p>area:</p>
-
-                        <div id='calculated-area'> </div>
-
-                        <p>length/perimeter:</p>
-                        <div id='calculated-length'></div>
 
                         <br />
-
-                        <hr style="margin-bottom: 10px">
-
+                        <hr style="margin-top: 15px">
                         <br />
 
                         <!--Text Tool-->
+                        <p style="font-size: 12px"><i class="fas fa-align-left"></i>  Add and edit text on the map:</p>
+
                         <div style="display: inline-flex; width: 100%">
                             <button id="textTool" active='false' onclick="activateTool(this)"><i class="fa fa-fw fa-plus"></i> Add Text</button>
-                            <button id="editTextTool" active='false' onclick="activateTool(this)"><i class="fa fa-fw fa-pencil-square-o"></i> Edit Text</button>
+                            <button id="editTextTool" active='false' onclick="activateTool(this)"><i class="fa fa-fw fa-edit"></i> Edit Text</button>
                         </div>
 
                         <br />
@@ -323,8 +331,6 @@
 
                         <br />
                         <hr style="margin-top: 10px; margin-bottom: 10px">
-
-
 
                     </div>
                 </div>
@@ -384,13 +390,40 @@
 
                     <div class="modal-body">
 
-                        <p>Click map for lng/lat:</p>
-                        <pre id='info'><i class="fa fa-fw fa-globe"></i> lng/lat</pre>
+                        <hr>
+                        <br />
+
+                        <!-- enter lng/lat -->
+                        <div style="vertical-align:top;">
+                            <p style="font-size: 12px"><i class="fas fa-map-marked-alt"></i>  Enter Coordinates</p>
+                            <input type="number" id='lngInput' style="font-size: 11px; padding: 2px; margin:2px" placeholder="longitude"><br>
+                            <input type="number" id='latInput' style="font-size: 11px; padding: 2px; margin:2px" placeholder="latitude"><br>
+
+                            <div style="padding-top:10px">
+                                <input type="button" value="find" id="findLLButton" style="font-size: 10px;">
+                                <input type="button" value="clear" id="findLLButtonClear" style="font-size: 10px;">
+                            </div>
+                        </div>
+
                         <br />
                         <hr>
                         <br />
-                        <p>Address Search:</p>
+
+                        <!-- lng/lat on map click -->
+                        <p style="font-size: 12px"><i class="fas fa-mouse-pointer"></i>  Click on map to find lng/lat:</p>
+                        <pre id='info'><i class="fa fa-fw fa-globe"></i> lng/lat</pre>
+
+                        <br />
+                        <hr>
+                        <br />
+
+                        <!-- address geocode api-->
+                        <p style="font-size: 12px"><i class="fas fa-home"></i>  Address Search:</p>
                         <div id="addressAppend"></div>
+
+                        <br />
+                        <hr>
+                        <br />
 
                     </div>
                 </div>
@@ -456,11 +489,10 @@
                                     </div>
                                 </div>
 
-                                <div style="display: inline-flex;">
-                                    <button type="button" id="export-map" class="button button" data-dismiss="modal"><i class="fa fa-fw fa-print"></i><i class="fa fa-fw fa-share"></i></button>
-                                    <div style="padding-left: 11px; padding-top: 13px; font-size:xx-small; margin:0"><i style="color:#dc4f4f" class="fa fa-fw fa-exclamation-circle"></i> This may take a few seconds...</div>
+                                <div>
+                                    <button type="button" id="export-map" class="button button" data-dismiss="modal"><i class="fa fa-fw fa-print"></i> Create Map</button>
+                                    <div style="padding-top: 13px; font-size:xx-small; margin:0"><i style="color:#dc4f4f" class="fa fa-fw fa-exclamation-circle"></i> This may take a few seconds...</div>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -472,6 +504,7 @@
 
             </div>
         </div>
+
 
 
         <!-- Disclaimer Modal -->

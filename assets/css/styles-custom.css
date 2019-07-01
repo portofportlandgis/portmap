@@ -11,8 +11,22 @@ button:focus {
     display: block;
     position: relative;
     width: 100%;
-    height: 42px;
-    padding: 12px;
+    height: 36px;
+    /* padding: 12px; */
+    border: 1px solid rgb(208, 208, 208);
+    border-radius: 0px;
+    font-size: 11px;
+    text-align: left;
+    color: #656565;
+    background: #e8e8e8;
+}
+
+#getElevation {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 36px;
+    /* padding: 12px; */
     border: 1px solid rgb(208, 208, 208);
     border-radius: 0px;
     font-size: 11px;
@@ -27,33 +41,46 @@ button:focus {
 }
 
 .draw-color-change {
-   height: 18px;
-   width: 18px;
-   border-radius: 0px;
-   margin-right: 2px;
-   display: inline-flex;
-   cursor: pointer;
+    height: 18px;
+    width: 18px;
+    border-radius: 0px;
+    margin-right: 2px;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+#customDrawPalette {
+    padding: 0;
+    margin: 0;
+}
+
+.draw-color-change {
+    height: 18px;
+    width: 18px;
+    border-radius: 0px;
+    margin-right: 2px;
+    display: inline-flex;
+    cursor: pointer;
 }
 
 #calculate {
-
     background-color: none;
     color: #4a4a4a;
     cursor: pointer;
-
 }
 
 #calculated-area, #calculated-length {
-    height: 40px;
+    height: 30px;
     width: 100%;
     background-color: #e8e8e8;
     border: 1px solid rgb(208, 208, 208);
     color: #4a4a4a;
     /*border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;*/
-    padding: 10px;
+    padding: 6px;
     cursor: pointer;
-    margin: 10px 0;
+    margin-bottom: 10px;
+    font-size: 12px;
 }
 
 
@@ -92,6 +119,7 @@ button:focus {
 #urlCopied {
     max-height: 40px;
     height: 40px;
+    width: 50%;
     background-color: #e8e8e8;
     color: #4a4a4a;
     border-top-right-radius: 0px;
@@ -106,7 +134,7 @@ button:focus {
 
 #copyButton {
     min-height: 40px;
-    width: 40px;
+    /*width: 40px;*/
     background-color: #dcdcdc;
     border: none;
     border-top-left-radius: 0px;
