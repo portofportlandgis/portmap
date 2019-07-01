@@ -81,6 +81,7 @@ span.marker-text-child {
     border: 1px solid rgb(208, 208, 208);
     /*font-family: 'Open Sans', sans-serif;*/
     margin-right: 10px;
+    font-size: 12px;
 }
 
 #customTextPalette {

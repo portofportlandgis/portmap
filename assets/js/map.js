@@ -104,6 +104,62 @@ map.on('load', function () {
 
 });
 
+//Enter Lat Long
+//Enter Lat Long
+//Enter Lat Long
+
+map.on('load', function () {
+
+    $(document).ready(function () {
+
+
+        //clear
+        $('#findLLButtonClear').click(function () {
+
+            map.removeLayer("enterLL");
+            map.removeSource("enterLL");
+
+            if (map.getLayer("enterLL")) {
+                map.removeLayer("enterLL");
+                map.removeSource("enterLL");
+            }
+
+        });
+
+        //create
+        $('#findLLButton').click(function () {
+
+            var enterLng = +document.getElementById('lngInput').value
+            var enterLat = +document.getElementById('latInput').value
+
+            var enterLL = turf.point([enterLng, enterLat]);
+
+            map.addSource('enterLL', {
+                type: 'geojson',
+                data: enterLL
+            });
+
+            map.addLayer({
+                id: 'enterLL',
+                type: 'circle',
+                source: 'enterLL',
+                layout: {
+
+                },
+                paint: {
+                    "circle-color": 'red',
+                    "circle-radius": 8,
+                },
+            });
+
+            map.flyTo({
+                center: [enterLng, enterLat]
+            });
+
+        });
+    });
+});
+
 // Coordinates Tool
 // Coordinates Tool
 // Coordinates Tool
@@ -138,7 +194,7 @@ map.on('load', function () {
         "type": "fill",
         "source": "monster",
         "layout": {
-           //"visibility": 'none'
+      //"visibility": 'none'
         },
         "paint": {
             'fill-color': '#b30000',
@@ -164,7 +220,7 @@ map.on('load', function () {
         "type": "line",
         "source": "water-line",
         "layout": {
-           // "visibility": 'none'
+            // "visibility": 'none'
         },
         "paint": {
             'line-color': '#0099ff',
@@ -259,7 +315,7 @@ map.on('load', function () {
         "type": "fill",
         "source": "country",
         "layout": {
-           //"visibility": 'none'
+            //"visibility": 'none'
         },
         "paint": {
             'fill-color': '#595959',
@@ -373,7 +429,7 @@ map.on('load', function () {
             append.innerHTML +=
                   '<h5>Monster Info</h5>' +
                   '<hr>' +
-                  '<b>Name: </b>' + 'Mr. Claw'+
+                  '<b>Name: </b>' + 'Mr. Claw' +
                   '<hr>' +
                   '<b>Place of Birth: </b>' + 'Atlantic Ocean' +
                   '<hr>' +
@@ -1699,12 +1755,12 @@ function populateDrawPalette() {
 
 function handlePolygonOrder(clickedFeats) {
     if (clickedFeats.length > 1) {
-        var tempTrack = trackDrawnPolygons.filter(function(p) {
+        var tempTrack = trackDrawnPolygons.filter(function (p) {
             return clickedFeats.indexOf(p) > -1;
         });
 
         var lastPoly = tempTrack[tempTrack.length - 1];
-        draw.changeMode('direct_select', { featureId: lastPoly});
+        draw.changeMode('direct_select', { featureId: lastPoly });
 
         var feat = draw.get(lastPoly);
         var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
@@ -1738,7 +1794,7 @@ function handleVerticesColors(color) {
 }
 
 // color change function of draw features
-var changeDrawColor = function(e) {
+var changeDrawColor = function (e) {
 
     if (e.target.id && e.target.id.indexOf('draw-') === -1) return;
 
@@ -1750,30 +1806,30 @@ var changeDrawColor = function(e) {
         var feat = draw.get(drawFeatureID);
         draw.add(feat);
 
-       // race conditions exist between events
-       // and draw's transitions between .hot and .cold layers
-       setTimeout(function(){
-           handleVerticesColors(color);
-       }, 50);
+        // race conditions exist between events
+        // and draw's transitions between .hot and .cold layers
+        setTimeout(function () {
+            handleVerticesColors(color);
+        }, 50);
     }
 
 };
 
 // callback for draw.update and draw.selectionchange
-var setDrawFeature = function(e) {
+var setDrawFeature = function (e) {
     if (e.features.length && e.features[0].type === 'Feature') {
         var feat = e.features[0];
         drawFeatureID = feat.id;
 
         if (feat.geometry.type === 'Polygon' && trackDrawnPolygons.length > 1 && draw.getMode() !== 'draw_polygon' &&
             feat.id !== trackDrawnPolygons[trackDrawnPolygons.length - 1]) {
-                getLastDrawnPoly = true;
+            getLastDrawnPoly = true;
         } else {
             var c = feat.properties.portColor ? feat.properties.portColor : '#fbb03b';
 
             // race conditions exist between events
             // and draw's transitions between .hot and .cold layers
-            setTimeout(function(){
+            setTimeout(function () {
                 handleVerticesColors(c);
             }, 50);
         }
@@ -1781,7 +1837,7 @@ var setDrawFeature = function(e) {
 };
 
 // Event Handlers for Draw Tools
-map.on('draw.create', function(e) {
+map.on('draw.create', function (e) {
     newDrawFeature = true;
     if (e.features.length && e.features[0].geometry.type === 'Polygon') {
         trackDrawnPolygons.push(e.features[0].id);
@@ -1789,7 +1845,7 @@ map.on('draw.create', function(e) {
 });
 
 // track handling for polygon features
-map.on('draw.delete', function(e) {
+map.on('draw.delete', function (e) {
     if (e.features.length) {
         var feats = e.features;
         var featsToRemove = [];
@@ -1798,7 +1854,7 @@ map.on('draw.delete', function(e) {
             featsToRemove.push(feats[i].id);
         }
 
-        var tempTrack = trackDrawnPolygons.filter(function(p) {
+        var tempTrack = trackDrawnPolygons.filter(function (p) {
             return featsToRemove.indexOf(p) < 0;
         });
 
@@ -1809,7 +1865,7 @@ map.on('draw.delete', function(e) {
 map.on('draw.update', setDrawFeature);
 map.on('draw.selectionchange', setDrawFeature);
 
-map.on('click', function(e) {
+map.on('click', function (e) {
     if (getLastDrawnPoly) {
         var clickedFeats = draw.getFeatureIdsAt(e.point);
         handlePolygonOrder(clickedFeats);
@@ -1856,7 +1912,7 @@ function calculateDimensions(data) {
         lineAnswer = document.getElementById('calculated-length');
         lineAnswer.innerHTML = '<p>' + rounded_length + ' ft</p>';
 
-    //METER
+        //METER
     } else if (selectedUnits === 'meter') {
 
         area = turf.area(data);
@@ -1871,7 +1927,7 @@ function calculateDimensions(data) {
         lineAnswer = document.getElementById('calculated-length');
         lineAnswer.innerHTML = '<p>' + rounded_length + ' m</p>';
 
-     //MILE
+        //MILE
     } else if (selectedUnits === 'mile') {
 
         area = turf.area(data) / 2589988.11;
@@ -1886,7 +1942,7 @@ function calculateDimensions(data) {
         lineAnswer = document.getElementById('calculated-length');
         lineAnswer.innerHTML = '<p>' + rounded_length + ' mi</p>';
 
-    //KILOMETER
+        //KILOMETER
     } else if (selectedUnits === 'kilometer') {
 
         area = turf.area(data) / 1000000;
@@ -1901,7 +1957,7 @@ function calculateDimensions(data) {
         lineAnswer = document.getElementById('calculated-length');
         lineAnswer.innerHTML = '<p>' + rounded_length + ' km</p>';
 
-    //ACRE
+        //ACRE
     } else if (selectedUnits === 'acre') {
 
         area = turf.area(data) / 4046.85642;
@@ -1921,7 +1977,7 @@ function calculateDimensions(data) {
 
 // callback fires on the events listed below and fires the
 // above calculateDimensions function
-var calculateCallback = function(e) {
+var calculateCallback = function (e) {
     if (e.features.length && (e.features[0].geometry.type === 'Polygon' || e.features[0].geometry.type === 'LineString')) {
         measurementActive = true;
         selectedMeasuredFeature = e.features[0].id;
@@ -1933,7 +1989,7 @@ map.on('draw.create', calculateCallback);
 map.on('draw.update', calculateCallback);
 map.on('draw.selectionchange', calculateCallback);
 
-map.on('draw.delete', function(e) {
+map.on('draw.delete', function (e) {
     selectedMeasuredFeature = '';
     measurementActive = false;
     removeMeasurementValues();
@@ -1943,13 +1999,13 @@ map.on('draw.delete', function(e) {
 // of a newly instantiated feature that has yet to be 'created'
 // or perhaps it's not documented anywhere in GL Draw
 // so we have to make our own
-map.on('mousemove', function(e) {
+map.on('mousemove', function (e) {
     if (draw.getMode() === 'draw_line_string' || draw.getMode() === 'draw_polygon') {
-       var linePts = draw.getFeatureIdsAt(e.point);
+        var linePts = draw.getFeatureIdsAt(e.point);
 
         if (linePts.length) {
             // some draw features return back as undefined
-            var activeID = linePts.filter(function(feat) {
+            var activeID = linePts.filter(function (feat) {
                 return typeof feat === 'string';
             })
 
@@ -1972,13 +2028,13 @@ map.on('mousemove', function(e) {
 });
 
 // remove measurements from input
-map.on('click', function(e){
+map.on('click', function (e) {
     if (measurementActive) {
         var measuredFeature = draw.getFeatureIdsAt(e.point);
 
         if (measuredFeature.length) {
             // some draw features return back as undefined
-            var mF = measuredFeature.filter(function(feat) {
+            var mF = measuredFeature.filter(function (feat) {
                 return typeof feat === 'string';
             })
 
@@ -1995,11 +2051,11 @@ map.on('click', function(e){
 });
 
 
-$(function(){
+$(function () {
     // set unit value
     selectedUnits = $('input[type=radio][name=unit]:checked').val();
 
-    $('input[type=radio][name=unit]').change(function() {
+    $('input[type=radio][name=unit]').change(function () {
         selectedUnits = this.value;
 
         //update values based on new units

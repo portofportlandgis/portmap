@@ -2950,7 +2950,7 @@ output {
     color: #555;
     background-color: #fff;
     background-image: none;
-    border: 2px solid #e8e8e8;
+    border: 1px solid #b0b0b0;
     border-radius: 0;
     -webkit-appearance: none;
 }
