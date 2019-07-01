@@ -1736,7 +1736,7 @@ var draw = new MapboxDraw({
 });
 
 var drawTool = document.getElementById('drawAppend');
-drawTool.appendChild(draw.onAdd(map))
+drawTool.appendChild(draw.onAdd(map)).setAttribute("style", "display: inline-flex;", "border: 0;");
 
 // create draw palette
 function populateDrawPalette() {
