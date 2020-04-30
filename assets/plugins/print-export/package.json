@@ -8,7 +8,7 @@
   "dependencies": {
     "MapboxGL-Layer-Tree": "https://github.com/TheGartrellGroup/Mapbox-GL-JS-Layer-Tree.git",
     "blueimp-canvas-to-blob": "^3.7.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "cropper": "^3.0.0-beta",
     "file-saver": "1.3.3",
     "font-awesome": "^4.7.0",
