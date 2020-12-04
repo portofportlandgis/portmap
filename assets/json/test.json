@@ -1,0 +1,359 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "pavementSections",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Polygon",
+				"coordinates" : [
+					[
+						[ -122.60682255, 45.58511936 ],
+						[ -122.6068226, 45.58539435 ],
+						[ -122.60713747, 45.58539423 ],
+						[ -122.60717741, 45.58539581 ],
+						[ -122.60737621, 45.58540193 ],
+						[ -122.60760977, 45.58539695 ],
+						[ -122.60767653, 45.58535184 ],
+						[ -122.60776312, 45.5851924 ],
+						[ -122.60791987, 45.58490376 ],
+						[ -122.60794446, 45.58488635 ],
+						[ -122.60795331, 45.58487691 ],
+						[ -122.60795924, 45.5848642 ],
+						[ -122.6079593, 45.58485613 ],
+						[ -122.60796032, 45.5847286 ],
+						[ -122.60756884, 45.5847275 ],
+						[ -122.60717825, 45.5847264 ],
+						[ -122.60678765, 45.5847253 ],
+						[ -122.6065908, 45.58472475 ],
+						[ -122.6065736, 45.58473565 ],
+						[ -122.60657344, 45.58480336 ],
+						[ -122.6064877, 45.58485305 ],
+						[ -122.60629569, 45.58496431 ],
+						[ -122.60629838, 45.58498973 ],
+						[ -122.60629743, 45.58508598 ],
+						[ -122.60624264, 45.58508629 ],
+						[ -122.60624561, 45.58539475 ],
+						[ -122.60635896, 45.58539473 ],
+						[ -122.60643397, 45.58539472 ],
+						[ -122.60643383, 45.58536595 ],
+						[ -122.60643256, 45.58511913 ],
+						[ -122.60682255, 45.58511936 ]
+					],
+					[
+						[ -122.60661158, 45.58482308 ],
+						[ -122.60661129, 45.58478518 ],
+						[ -122.60698481, 45.58478385 ],
+						[ -122.60698505, 45.58482176 ],
+						[ -122.60661158, 45.58482308 ]
+					]
+				]
+			},
+			"properties" : {
+				"asset_id" : "PPAVP0006148",
+				"facility_cd" : "ATC",
+				"rev_user" : "colema",
+				"lifecycle_status_cd" : "AC",
+				"uniqueid" : "091205153-ODVI6R>LR2",
+				"pid" : "PDX,AC,01",
+				"branch_id" : "AC",
+				"section_id" : "01",
+				"network_id" : "PDX",
+				"PCI" : 90,
+				"Last_inspect" : "20160815",
+				"Shape.STLength()" : 1679.61804240631,
+				"FMEArea" : "81913.21",
+				"Feature_Type" : "PORT.pavement_sections",
+				"Folder" : "Pavement",
+				"OBJECTID" : 18944,
+				"geodb_feature_dataset" : "gisdb.PORT.Pavement",
+				"facility_cd_resolved" : "Airtrans Center",
+				"lifecycle_status_cd_resolved" : "Active",
+				"rev_date" : "2018-07-11 07:26:44",
+				"FMEAcres" : "1.88",
+				"comments" : " ",
+				"WorkHistory_1" : "1988-09-01,Base Course - Aggregate  Well-Graded 4(in) PDX 87-510, sht. C-6",
+				"WorkHistory_2" : "1988-09-02,Base Course - Bituminous Asphalt Concrete 17(in) PDX 87-510, sht. C-6",
+				"WorkHistory_3" : "1988-09-03,New Construction - AC Asphalt Concrete 5(in) PDX 87-510, sht. C-6",
+				"WorkHistory_4" : "2013-09-01,Surface Course - AC Asphalt Concrete 0(in) work was done bu UPS contractor",
+				"WorkHistory_5" : "2013-09-02,Cold Milling Asphalt Concrete -2.999999999988(in) ",
+				"WorkHistory_6" : "2013-09-03,Surface Course - AC Asphalt Concrete 2.999999999988(in) work done by UPS contractor"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Polygon",
+				"coordinates" : [
+					[
+						[ -122.61814294, 45.59200132 ],
+						[ -122.61819845, 45.59202288 ],
+						[ -122.61829948, 45.59206075 ],
+						[ -122.61852054, 45.5921436 ],
+						[ -122.61854213, 45.59215054 ],
+						[ -122.61856475, 45.59215559 ],
+						[ -122.61858808, 45.59215868 ],
+						[ -122.61861176, 45.59215976 ],
+						[ -122.61863547, 45.59215881 ],
+						[ -122.61865883, 45.59215585 ],
+						[ -122.6186815, 45.59215092 ],
+						[ -122.61880883, 45.59211193 ],
+						[ -122.61900792, 45.59205095 ],
+						[ -122.61900958, 45.59204886 ],
+						[ -122.61899845, 45.59204407 ],
+						[ -122.61904981, 45.59197883 ],
+						[ -122.61889063, 45.59191674 ],
+						[ -122.61868853, 45.5918379 ],
+						[ -122.61839701, 45.59172417 ],
+						[ -122.61846005, 45.59193707 ],
+						[ -122.61839031, 45.59194568 ],
+						[ -122.61832134, 45.59170544 ],
+						[ -122.61834179, 45.59170166 ],
+						[ -122.61832497, 45.59169514 ],
+						[ -122.61816005, 45.59163123 ],
+						[ -122.61822236, 45.59184529 ],
+						[ -122.61815071, 45.59185409 ],
+						[ -122.61808319, 45.59161243 ],
+						[ -122.61810463, 45.59160953 ],
+						[ -122.61806867, 45.59159548 ],
+						[ -122.61792193, 45.59153819 ],
+						[ -122.6179794, 45.59175282 ],
+						[ -122.61791279, 45.59176179 ],
+						[ -122.61784499, 45.59151994 ],
+						[ -122.61786674, 45.5915169 ],
+						[ -122.61781245, 45.59149573 ],
+						[ -122.61768544, 45.59144619 ],
+						[ -122.61774362, 45.59166085 ],
+						[ -122.61767373, 45.59167006 ],
+						[ -122.6176104, 45.59142769 ],
+						[ -122.61762972, 45.59142498 ],
+						[ -122.6175923, 45.59141178 ],
+						[ -122.61753732, 45.59148013 ],
+						[ -122.61756215, 45.59162725 ],
+						[ -122.61756379, 45.59163697 ],
+						[ -122.61758445, 45.59172482 ],
+						[ -122.61758925, 45.5917399 ],
+						[ -122.61759643, 45.5917545 ],
+						[ -122.61760591, 45.59176844 ],
+						[ -122.61761756, 45.59178154 ],
+						[ -122.61763124, 45.59179364 ],
+						[ -122.61764677, 45.59180459 ],
+						[ -122.61766396, 45.59181424 ],
+						[ -122.61768258, 45.59182246 ],
+						[ -122.61782323, 45.59187711 ],
+						[ -122.61796388, 45.59193175 ],
+						[ -122.61814294, 45.59200132 ]
+					]
+				]
+			},
+			"properties" : {
+				"asset_id" : "PPAVP0005702",
+				"facility_cd" : "PDX",
+				"rev_user" : "colema",
+				"lifecycle_status_cd" : "AC",
+				"pavement_loc_cd" : "Airside - Apron",
+				"uniqueid" : "IITDB8(4W(=3N;\\$QB45",
+				"pid" : "PDX,AARM,01",
+				"branch_id" : "AARM",
+				"section_id" : "01",
+				"network_id" : "PDX",
+				"PCI" : 68,
+				"Last_inspect" : "20160926",
+				"Shape.STLength()" : 1706.0056691005,
+				"FMEArea" : "38808.39",
+				"Feature_Type" : "PORT.pavement_sections",
+				"Folder" : "Pavement",
+				"OBJECTID" : 18484,
+				"geodb_feature_dataset" : "gisdb.PORT.Pavement",
+				"facility_cd_resolved" : "Portland International Airport",
+				"lifecycle_status_cd_resolved" : "Active",
+				"pavement_loc_cd_resolved" : "Airside - Apron",
+				"rev_date" : "2018-07-13 15:25:06",
+				"FMEAcres" : "0.89",
+				"comments" : "TAXIWAY B",
+				"WorkHistory_1" : "1991-09-01,New Construction - Initial Asphalt Concrete 5(in) PDX 1991, sht. C-10",
+				"WorkHistory_2" : "1991-09-02,Subbase - Sand Sand 24(in) PDX 1991, sht. C-10",
+				"WorkHistory_3" : "1991-09-03,Base Course - Aggregate Crushed Stone - Well Graded 4(in) PDX 1991, sht. C-10",
+				"WorkHistory_4" : "1991-09-04,Base Course - Bituminous Asphalt Concrete 9.5(in) PDX 1991, sht. C-10",
+				"WorkHistory_5" : "1995-09-01,Surface Seal - Fog Seal  Fog Seal 0(in) PDX 1995-12, sht. C-17",
+				"WorkHistory_6" : "2003-09-01,Overlay - AC Thin (Global) Asphalt Concrete 2.5(in) PDX 2003-1, sht. C-35, C-84",
+				"WorkHistory_7" : "2003-09-02,Surface Seal - Fog Seal  Fog Seal 0(in) PDX 2003-1, sht. C-35, C-84",
+				"WorkHistory_8" : "2012-09-01,Cold Milling Asphalt Concrete -2.999999999988(in) CD PDX 2012 0500\n",
+				"WorkHistory_9" : "2012-09-02,Surface Course - AC Asphalt Concrete 2.999999999988(in) CD PDX 2012 0500\n"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Polygon",
+				"coordinates" : [
+					[
+						[ -122.60513146, 45.58375364 ],
+						[ -122.60513111, 45.58386142 ],
+						[ -122.60513089, 45.58392724 ],
+						[ -122.60513067, 45.58399306 ],
+						[ -122.60513028, 45.5841097 ],
+						[ -122.60570247, 45.58411096 ],
+						[ -122.60570764, 45.58372168 ],
+						[ -122.60555337, 45.58372142 ],
+						[ -122.60550651, 45.58372135 ],
+						[ -122.60536591, 45.58372112 ],
+						[ -122.60527217, 45.58372097 ],
+						[ -122.60517844, 45.58372081 ],
+						[ -122.60513157, 45.58372074 ],
+						[ -122.60513146, 45.58375364 ]
+					]
+				]
+			},
+			"properties" : {
+				"asset_id" : "PPAVP0005917",
+				"facility_cd" : "ATC",
+				"rev_user" : "colema",
+				"lifecycle_status_cd" : "AC",
+				"uniqueid" : "091205153P+*W%962TGT",
+				"pid" : "PDX,AC,04",
+				"branch_id" : "AC",
+				"section_id" : "04",
+				"network_id" : "PDX",
+				"PCI" : 95,
+				"Last_inspect" : "20160815",
+				"Shape.STLength()" : 577.74554140355,
+				"FMEArea" : "20855.11",
+				"Feature_Type" : "PORT.pavement_sections",
+				"Folder" : "Pavement",
+				"OBJECTID" : 18708,
+				"geodb_feature_dataset" : "gisdb.PORT.Pavement",
+				"facility_cd_resolved" : "Airtrans Center",
+				"lifecycle_status_cd_resolved" : "Active",
+				"rev_date" : "2018-07-11 07:26:39",
+				"FMEAcres" : "0.48",
+				"comments" : " ",
+				"WorkHistory_1" : "1999-09-02,Subbase - Aggregate  Well-Graded 3.999999999984(in) CD PDX 1999 0500 SHT 08",
+				"WorkHistory_2" : "1999-09-03,New Construction - PCC Portland Cement Concrete 7.999999999968(in) CD PDX 1999 0500 00 Sht C-8\n\n"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "MultiPolygon",
+				"coordinates" : [
+					[
+						[
+							[ -122.61810463, 45.59160953 ],
+							[ -122.61808319, 45.59161243 ],
+							[ -122.61815071, 45.59185409 ],
+							[ -122.61822236, 45.59184529 ],
+							[ -122.61816005, 45.59163123 ],
+							[ -122.61815193, 45.59160318 ],
+							[ -122.61810463, 45.59160953 ]
+						]
+					],
+					[
+						[
+							[ -122.61762972, 45.59142498 ],
+							[ -122.6176104, 45.59142769 ],
+							[ -122.61767373, 45.59167006 ],
+							[ -122.61774362, 45.59166085 ],
+							[ -122.61767769, 45.59141858 ],
+							[ -122.61762972, 45.59142498 ]
+						]
+					],
+					[
+						[
+							[ -122.61834179, 45.59170166 ],
+							[ -122.61832134, 45.59170544 ],
+							[ -122.61839031, 45.59194568 ],
+							[ -122.61846005, 45.59193707 ],
+							[ -122.6183885, 45.59169538 ],
+							[ -122.61834179, 45.59170166 ]
+						]
+					],
+					[
+						[
+							[ -122.61786674, 45.5915169 ],
+							[ -122.61784499, 45.59151994 ],
+							[ -122.61791279, 45.59176179 ],
+							[ -122.6179794, 45.59175282 ],
+							[ -122.61792193, 45.59153819 ],
+							[ -122.61791442, 45.59151066 ],
+							[ -122.61786674, 45.5915169 ]
+						]
+					]
+				]
+			},
+			"properties" : {
+				"asset_id" : "PPAVP0002324",
+				"facility_cd" : "PDX",
+				"rev_user" : "colema",
+				"lifecycle_status_cd" : "AC",
+				"uniqueid" : "IITDB*HMZ_&1GGZ-1M.8",
+				"pid" : "PDX,AARM,02",
+				"branch_id" : "AARM",
+				"section_id" : "02",
+				"network_id" : "PDX",
+				"PCI" : 84,
+				"Last_inspect" : "20160926",
+				"Shape.STLength()" : 862.203024837529,
+				"FMEArea" : "6446.86",
+				"Feature_Type" : "PORT.pavement_sections",
+				"Folder" : "Pavement",
+				"OBJECTID" : 18866,
+				"geodb_feature_dataset" : "gisdb.PORT.Pavement",
+				"facility_cd_resolved" : "Portland International Airport",
+				"lifecycle_status_cd_resolved" : "Active",
+				"rev_date" : "2018-07-11 07:26:42",
+				"FMEAcres" : "0.15",
+				"comments" : " ",
+				"WorkHistory_1" : "1991-09-01,New Construction - Initial Asphalt Concrete 5(in) PDX 1991, sht. C-10",
+				"WorkHistory_2" : "1991-09-02,Subbase - Sand Sand 24(in) PDX 1991, sht. C-10",
+				"WorkHistory_3" : "1991-09-03,Base Course - Aggregate Crushed Stone - Well Graded 4(in) PDX 1991, sht. C-10",
+				"WorkHistory_4" : "1991-09-04,Base Course - Bituminous Asphalt Concrete 2.999999999988(in) PDX 1991, sht. C-10",
+				"WorkHistory_5" : "1991-09-09,Overlay - PCC Unbonded Portland Cement Concrete 8.999999999964(in) This work done by MX"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Polygon",
+				"coordinates" : [
+					[
+						[ -122.60661129, 45.58478518 ],
+						[ -122.60661158, 45.58482308 ],
+						[ -122.60678755, 45.58482246 ],
+						[ -122.60698505, 45.58482176 ],
+						[ -122.60698481, 45.58478385 ],
+						[ -122.60678759, 45.58478455 ],
+						[ -122.60661129, 45.58478518 ]
+					]
+				]
+			},
+			"properties" : {
+				"asset_id" : "PPAVP0006147",
+				"facility_cd" : "ATC",
+				"rev_user" : "colema",
+				"lifecycle_status_cd" : "AC",
+				"uniqueid" : "091205153(Q;&A6Q#JQP",
+				"pid" : "PDX,AC,02",
+				"branch_id" : "AC",
+				"section_id" : "02",
+				"network_id" : "PDX",
+				"PCI" : 45,
+				"Last_inspect" : "20160815",
+				"Shape.STLength()" : 218.892294069592,
+				"FMEArea" : "1321.84",
+				"Feature_Type" : "PORT.pavement_sections",
+				"Folder" : "Pavement",
+				"OBJECTID" : 18943,
+				"geodb_feature_dataset" : "gisdb.PORT.Pavement",
+				"facility_cd_resolved" : "Airtrans Center",
+				"lifecycle_status_cd_resolved" : "Active",
+				"rev_date" : "2018-07-11 07:26:44",
+				"FMEAcres" : "0.03",
+				"comments" : " ",
+				"WorkHistory_1" : "1995-09-01,Subbase - Sand Sand 54(in) PDX 99-3054 - built after 1994",
+				"WorkHistory_2" : "1995-09-02,Base Course - Aggregate  Well-Graded 4(in) PDX 99-3054 - built after 1994",
+				"WorkHistory_3" : "1995-09-03,New Construction - PCC Portland Cement Concrete 13(in) PDX 99-3054 - built after 1994"
+			}
+		}
+	]
+}

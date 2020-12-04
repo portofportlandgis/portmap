@@ -1,4 +1,4 @@
-mapboxgl.accessToken = '<Mapbox ID>';
+mapboxgl.accessToken = 'pk.eyJ1IjoicG9ydGdpcyIsImEiOiJrbEEzV3JVIn0.O9iz-MI7OHXqyBXkS1pfog';
 
 var map = new mapboxgl.Map({
     container: 'map',
@@ -412,12 +412,40 @@ map.on('load', function () {
             feature = map.queryRenderedFeatures(e.point, { layers: ['country'] })[0];
 
             append.innerHTML +=
-              '<h5>Country</h5>' +
+              '<h5>Pavement Test</h5>' +
               '<hr>' +
-              '<b>Port Name </b>' + feature.properties.admin +
+              '<b>Survey Quality: </b>' + feature.properties.loc_survey_quality_cd_resolved +
               '<hr>' +
-              '<b>Code: </b>' + feature.properties.adm0_a3 +
-              '<hr>'
+              '<b>Pavement Location: </b>' + feature.properties.pavement_loc_cd_resolved +
+              '<hr>' +
+              '<b>Lifecycle Status: </b>' + feature.properties.lifecycle_status_cd_resolved +
+              '<hr>' +
+              '<b>Network ID: </b>' + feature.properties.network_id +
+              '<hr>' +
+              '<b>Branch ID: </b>' + feature.properties.branch_id +
+              '<hr>' +
+              '<b>Section ID: </b>' + feature.properties.section_id +
+              '<hr>' +
+              '<b>PID: </b>' + feature.properties.pid +
+              '<hr>' +
+              '<b>PCI: </b>' + feature.properties.PCI +
+              '<hr>' +
+              '<b>Square Footage: </b>' + feature.properties.FMEArea +
+              '<hr>' +
+              '<b>Square Footage: </b>' + feature.properties.FMEArea +
+              '<hr>' +
+              '<b>Work History 1: </b>' + feature.properties.WorkHistory_1 +
+              '<hr>' +
+              '<b>Work History 2: </b>' + feature.properties.WorkHistory_2 +
+              '<hr>' +
+              '<b>Work History 3: </b>' + feature.properties.WorkHistory_3 +
+              '<hr>' +
+              '<b>Work History 4: </b>' + feature.properties.WorkHistory_4 +
+              '<hr>' +
+              '<b>Work History 5: </b>' + feature.properties.WorkHistory_5 +
+              '<hr>' +
+              '<b>Work History 6: </b>' + feature.properties.WorkHistory_6 +
+              '<hr>' 
         }
 
         //Monster - Layer Info
@@ -742,14 +770,14 @@ var layers =
         'name': 'Populated Places',
         'id': 'populated',
         'source': "populated",
-        'path': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places_simple.geojson',
+        'path': 'assets/json/ne_50m_populated_places_simple.geojson',
         'directory': 'Cultural',
     },
     {
         'name': 'Countries',
         'id': 'country',
         'source': 'country',
-        'path': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_0_map_units.geojson',
+        'path': 'assets/json/ne_110m_admin_0_map_units.geojson',
         'directory': 'Cultural',
     },
 
@@ -761,14 +789,14 @@ var layers =
         'name': 'Major Rivers',
         'id': 'river',
         'source': 'river',
-        'path': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_rivers_lake_centerlines.geojson',
+        'path': 'assets/json/ne_110m_rivers_lake_centerlines.geojson',
         'directory': 'Physical',
     },
     {
         'name': 'Oceans',
         'id': 'ocean',
         'source': 'ocean',
-        'path': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_geography_marine_polys.geojson',
+        'path': 'assets/json/ne_110m_geography_marine_polys.geojson',
         'directory': 'Physical',
     },
 
