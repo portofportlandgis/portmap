@@ -23,7 +23,7 @@ To get started you need to generate a Mapbox ID. Get your ID by creating a Mapbo
 ## Demo and Tutorial:
 [Demo](https://cdettlaff.github.io./)
 
-I created a quick [Tutorial](https://cdettlaff.github.io./) that will show you how to add data to the map, and make that data interactive. 
+I created a quick [Tutorial](https://opensource.portofportland.io/portmap-tutorial.html) that will show you how to add data to the map, and make that data interactive. 
 
 ## Quick Preview:
 
