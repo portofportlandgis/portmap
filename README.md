@@ -20,9 +20,10 @@ To get started you need to generate a Mapbox ID. Get your ID by creating a Mapbo
 * Not included in this repo: Save Views function allows the user to save Layer Tree configuration, Mapbox drawn features, Text Markups, and Zoom and Pitch. All plugins in this repo have code pre-built to work with the Save Views plugin: [Mapbox-GL-JS-save-view](https://github.com/TheGartrellGroup/Mapbox-GL-JS-save-view)
 
 
-## Demo:
+## Demo and Tutorial:
 [Demo](https://cdettlaff.github.io./)
 
+I created a quick [Tutorial](https://cdettlaff.github.io./) that will show you how to add data to the map, and make that data interactive. 
 
 ## Quick Preview:
 
