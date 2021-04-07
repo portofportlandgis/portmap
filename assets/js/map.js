@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoicG9ydGdpcyIsImEiOiJrbEEzV3JVIn0.O9iz-MI7OHXqyBXkS1pfog';
+mapboxgl.accessToken = 'paste mapbox access token here';
 
 var map = new mapboxgl.Map({
     container: 'map',
@@ -9,7 +9,7 @@ var map = new mapboxgl.Map({
     preserveDrawingBuffer: true,
 });
 
-// handles click/touch event across devices 
+//onclick support for mobile devices  
 let touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
 
 // navigation controls
@@ -22,19 +22,24 @@ map.addControl(new mapboxgl.ScaleControl({
     position: 'bottom-right'
 }));
 
-// geolocate control
-map.addControl(new mapboxgl.GeolocateControl());
+// geolocation 
+map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}));
 
-//This overides the Bootstrap modal "enforceFocus" to allow user interaction with main map
+//This overides the Bootstrap modal "enforceFocus" to allow user interaction with main map 
 $.fn.modal.Constructor.prototype.enforceFocus = function () { };
 
-// print function
+// print function 
 var printBtn = document.getElementById('mapboxgl-ctrl-print');
 var exportView = document.getElementById('export-map');
 
 var printOptions = {
-    disclaimer: "print output disclaimer",
-    northArrow: 'assets/plugins/print-export/north_arrow.svg'
+    disclaimer: "Port of Portland geospatial data is gathered, maintained and primarily used for internal reference and analysis, and is only updated as resources permit. Geospatial data refers to data and information referenced to a location on the Earth's surface such as maps, charts, air photos, satellite images, cadastre and land and water surveys, in digital or hard copy form. Geospatial data may be gathered and maintained by more than one person or department within the Port, and data distributed by one person or department may not reflect the most recent data available from the Port or from other sources. Port geospatial data is not intended for survey or engineering purposes or to describe the authoritative or precise location of boundaries, fixed human works, or the shape and contour of the earth. The Port makes no warranty of any kind, expressed or implied, including any warranty of merchantability, fitness for a particular purpose, or any other matter with respect to its geospatial data. The Port is not responsible for possible errors, omissions, misuse, or misrepresentation of its geospatial data. Port geospatial data is not intended as a final determination of such features as existing or proposed infrastructure, conservation areas, or the boundaries of regulated areas such as wetlands, all of which are subject to surveying or delineation and may change over time. No representation is made concerning the legal status of any apparent route of access identified in geospatial data. The foregoing disclaimer applies to uses of Port geospatial data in any context, including online access at Port workstations, remote access, or use in downloaded digital or hard copy form.",
+    northArrow: 'assets/libs/print-export/north_arrow.svg'
 }
 
 printBtn.onclick = function (e) {
@@ -67,7 +72,7 @@ $('#clear_general').on('click', function (e) {
 });
 
 // Geocoder API
-// Geocoder API
+// Geocoder API 
 // Geocoder API
 var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
@@ -90,12 +95,11 @@ map.on('load', function () {
         "source": "geocode-point",
         "type": "circle",
         "paint": {
-            "circle-radius": 20,
-            "circle-color": "dodgerblue",
-            'circle-opacity': 0.5,
-            'circle-stroke-color': 'white',
-            'circle-stroke-width': 3,
+            "circle-radius": 10,
+            "circle-color": "cyan",
+            'circle-opacity': .75,
         }
+
     });
 
     geocoder.on('result', function (ev) {
@@ -134,6 +138,11 @@ map.on('load', function () {
 
             var enterLL = turf.point([enterLng, enterLat]);
 
+            if (map.getLayer("enterLL")) {
+                map.removeLayer("enterLL");
+                map.removeSource("enterLL");
+            }
+           
             map.addSource('enterLL', {
                 type: 'geojson',
                 data: enterLL
@@ -143,12 +152,10 @@ map.on('load', function () {
                 id: 'enterLL',
                 type: 'circle',
                 source: 'enterLL',
-                layout: {
-
-                },
                 paint: {
-                    "circle-color": 'red',
-                    "circle-radius": 8,
+                    "circle-radius": 10,
+                    "circle-color": "cyan",
+                    'circle-opacity': .75,
                 },
             });
 
@@ -160,12 +167,39 @@ map.on('load', function () {
     });
 });
 
-// Coordinates Tool
-// Coordinates Tool
-// Coordinates Tool
+
+// Coordinates & Elevation Tool
+// Coordinates & Elevation Tool
+// Coordinates & Elevation Tool
+
 map.on(touchEvent, function (e) {
+    //coordinates tool
     document.getElementById('info').innerHTML =
         JSON.stringify(e.lngLat, function (key, val) { return val.toFixed ? Number(val.toFixed(4)) : val; }).replace('{"lng":', '').replace('"lat":', ' ').replace('}', '')
+
+});
+
+//sky and terrain layer
+//sky and terrain layer
+//sky and terrain layer
+map.on('load', function () {
+    // map.addSource('mapbox-dem', {
+    //     'type': 'raster-dem',
+    //     'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+    //     'tileSize': 512,
+    //     'maxzoom': 14
+    // });
+    // map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+
+    map.addLayer({
+        'id': 'sky',
+        'type': 'sky',
+        'paint': {
+            'sky-type': 'atmosphere',
+            'sky-atmosphere-sun': [0.0, 0.0],
+            'sky-atmosphere-sun-intensity': 15
+        }
+    });
 });
 
 //Layer Tree
@@ -315,7 +349,7 @@ map.on('load', function () {
         "type": "fill",
         "source": "country",
         "layout": {
-            //"visibility": 'none'
+            "visibility": 'none'
         },
         "paint": {
             'fill-color': '#595959',
@@ -696,7 +730,7 @@ var layers =
         'name': 'Mr Claw',
         'id': 'monster_group',
         'hideLabel': ['mouth', 'water-line', 'eyes', 'monster'],
-        'icon': 'assets/images/layer-stack-15.svg',
+        'icon': 'assets/images/icons/layer-stack-15.svg',
         'layerGroup': [
             {
                 'id': 'monster',
@@ -733,7 +767,7 @@ var layers =
         'name': 'Mr. Octo',
         'id': 'monster_group_2',
         'hideLabel': ['octo', 'water-line-2', 'eyes2', 'mouth2'],
-        'icon': 'assets/images/layer-stack-15.svg',
+        'icon': 'assets/images/icons/layer-stack-15.svg',
         'layerGroup': [
             {
                 'id': 'octo',
@@ -809,10 +843,9 @@ var layerTool = document.getElementById('menu');
 layerTool.appendChild(layerList.onAdd(map))
 
 
-//BOOKMARKS
-//BOOKMARKS
-//BOOKMARKS
-
+//Bookmarks
+//Bookmarks
+//Bookmarks
 document.getElementById('icelandBookmark').addEventListener('click', function () {
 
     map.flyTo({
@@ -847,6 +880,27 @@ document.getElementById('australiaBookmark').addEventListener('click', function 
 });
 
 
+//3D on/off button
+function threeDbutton(){
+  currentvalue = document.getElementById('threeDbutton').value;
+
+  if (currentvalue == "3D"){
+
+    document.getElementById("threeDbutton").value="3D ";
+    document.getElementById("threeDbutton").style.color = "#2CB5E3";
+    document.getElementById("threeDbutton").style.paddingLeft = "7px";
+    map.flyTo({
+        pitch: 70,
+    });
+ 
+  } else{
+    document.getElementById("threeDbutton").value="3D";
+    document.getElementById("threeDbutton").style.color = "#000";
+    map.flyTo({
+        pitch: 0,
+    });
+  }
+}
 
 //TEXT TOOL
 //TEXT TOOL
@@ -917,14 +971,14 @@ function markerToSymbol(e, elm) {
         var labelGJ = {
             "type": "FeatureCollection",
             "features": [
-              {
-                  "type": "Feature",
-                  "properties": {},
-                  "geometry": {
-                      "type": "Point",
-                      "coordinates": coords
-                  }
-              }
+                {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": coords
+                    }
+                }
             ]
         };
 
@@ -1764,7 +1818,8 @@ var draw = new MapboxDraw({
 });
 
 var drawTool = document.getElementById('drawAppend');
-drawTool.appendChild(draw.onAdd(map)).setAttribute("style", "display: inline-flex;", "border: 0;");
+
+drawTool.appendChild(draw.onAdd(map)).setAttribute("style", "display: inline-flex;", "border: 0;");;
 
 // create draw palette
 function populateDrawPalette() {
@@ -2095,3 +2150,9 @@ $(function () {
 
     populateDrawPalette();
 });
+
+
+
+
+
+

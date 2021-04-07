@@ -68,18 +68,16 @@ span.marker-text-child {
 
     #textTool[active='true'],
     #editTextTool[active='true'] {
-    background-color: #4a4a4a;
-    color: #e8e8e8;
-    border: 1px solid rgb(74, 74, 74);
+    background-color: #e4e4e4;;
+    /* color: #e8e8e8;
+    border: 1px solid rgb(74, 74, 74); */
     }
 
 #textTool, #editTextTool, #customTextPalette {
-    background: #e8e8e8;
-    /* position: absolute; */
+    background: #ffffff;
     z-index: 1;
-    /* border-radius: 3px; */
+    border-radius: 4px;
     border: 1px solid rgb(208, 208, 208);
-    /*font-family: 'Open Sans', sans-serif;*/
     margin-right: 10px;
     font-size: 12px;
 }

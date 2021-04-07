@@ -133,7 +133,7 @@ PrintControl.prototype.printPDF = function (size, mapText, zoom, center, bearing
     });
 
     if (mapText.title === '') {
-        mapText.title = _this.options.defaultTitle || 'PortGIS';
+        mapText.title = _this.options.defaultTitle || 'PortMap';
     }
 
     if (size === 'default') {
