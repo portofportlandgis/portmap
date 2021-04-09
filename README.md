@@ -23,25 +23,25 @@ To get started you need to generate a Mapbox ID. Get your ID by creating a Mapbo
 ## Demo and Tutorial:
 [Demo](https://cdettlaff.github.io./)
 
-I created a quick [Tutorial](https://opensource.portofportland.io/portmap-tutorial.html) that will show you how to add data to the map, and make that data interactive. 
+I created a [Tutorial](https://opensource.portofportland.io/portmap-tutorial.html) that shows you how to add data to PortMap, and make that data interactive. 
 
 ## Quick Preview:
 
 ### Layer Tree 
-![layers](https://user-images.githubusercontent.com/17071327/33678147-c6cf833a-da6f-11e7-9b74-b3f4fd59ea26.gif)
+![layers](https://user-images.githubusercontent.com/17071327/114205473-2e94e080-990f-11eb-8ad0-64ace1f12af5.png)
 
-### Identify 
-![identify](https://user-images.githubusercontent.com/17071327/33678145-c69bbfe6-da6f-11e7-89ba-08cb0b4d2827.gif)
+### Identify Features
+![identify](https://user-images.githubusercontent.com/17071327/114205484-30f73a80-990f-11eb-90f5-069a8e469fa4.png)
 
 ### Draw and Text
-![draw](https://user-images.githubusercontent.com/17071327/33678143-c650e782-da6f-11e7-8771-2537d8bf6c31.gif)
+![draw](https://user-images.githubusercontent.com/17071327/114205491-32286780-990f-11eb-91e5-b4cb8d33bc8c.png)
 
 ### Search JSON with autocomplete
-![search](https://user-images.githubusercontent.com/17071327/33678150-c80cdd74-da6f-11e7-8d16-e6a9dfdbb43b.gif)
+![search](https://user-images.githubusercontent.com/17071327/114205518-38b6df00-990f-11eb-88ba-1070afdd4f4b.png)
 
 ### Client Side Printing  
-![print](https://user-images.githubusercontent.com/17071327/33678149-c7da0f8e-da6f-11e7-8883-6d4d06af7da5.gif)
+![print](https://user-images.githubusercontent.com/17071327/114205528-3a80a280-990f-11eb-9586-afdbe6a943d7.png)
 
-### Mobile View   
-![mobile](https://user-images.githubusercontent.com/17071327/33678148-c70a666c-da6f-11e7-81c8-cdb6e7e99de8.gif)
+### Location Tools  
+![mobile](https://user-images.githubusercontent.com/17071327/114205505-348ac180-990f-11eb-8735-e084c86a7454.png)
 
