@@ -1,0 +1,25 @@
+{
+  "name": "portmap",
+  "version": "1.0.0",
+  "description": "A responsive web map application template using [Bootstrap](https://getbootstrap.com/) and [Mapbox GL](https://www.mapbox.com/mapbox-gl-js/api/)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheGartrellGroup/portmap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheGartrellGroup/portmap/issues"
+  },
+  "homepage": "https://github.com/TheGartrellGroup/portmap#readme",
+  "devDependencies": {
+    "vite": "^2.3.7"
+  }
+}

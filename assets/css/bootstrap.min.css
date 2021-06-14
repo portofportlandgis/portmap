@@ -3950,7 +3950,7 @@ tbody.collapse.in {
     content: "";
     border-top: 0;
     border-bottom: 4px dashed;
-    border-bottom: 4px solid;\9
+    border-bottom: 4px solid;
 }
 
 .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
